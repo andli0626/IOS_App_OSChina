@@ -1746,15 +1746,15 @@
 		F24122211705D0F30072E6F7 /* 1ZongHe */ = {
 			isa = PBXGroup;
 			children = (
-				DA3FF882150F218C009A5C86 /* NewsCell.h */,
-				DA3FF883150F218C009A5C86 /* NewsCell.m */,
-				DA3FF884150F218C009A5C86 /* NewsCell.xib */,
-				DAC69C231505EE3F00C2FCEC /* NewsView.h */,
-				DAC69C241505EE3F00C2FCEC /* NewsView.m */,
-				DAC69C251505EE3F00C2FCEC /* NewsView.xib */,
 				DA820649150DBEC30065AB7E /* NewsBase.h */,
 				DA82064A150DBEC30065AB7E /* NewsBase.m */,
 				DA82064B150DBEC30065AB7E /* NewsBase.xib */,
+				DAC69C231505EE3F00C2FCEC /* NewsView.h */,
+				DAC69C241505EE3F00C2FCEC /* NewsView.m */,
+				DAC69C251505EE3F00C2FCEC /* NewsView.xib */,
+				DA3FF882150F218C009A5C86 /* NewsCell.h */,
+				DA3FF883150F218C009A5C86 /* NewsCell.m */,
+				DA3FF884150F218C009A5C86 /* NewsCell.xib */,
 			);
 			name = 1ZongHe;
 			sourceTree = "<group>";

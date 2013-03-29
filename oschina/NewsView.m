@@ -235,8 +235,8 @@
         }
     }
     else {
-        NewsBase *parent = (NewsBase *)self.parentViewController;
-        self.parentViewController.title = [parent getSegmentTitle];
+        NewsBase *newsbaseView = (NewsBase *)self.parentViewController;
+        self.parentViewController.title = [newsbaseView getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {
             NewsInfoModel *n = [news objectAtIndex:row];
@@ -248,7 +248,7 @@
                 }
                 else
                 {
-                    [Tool analysis:n.url andNavController:parent.navigationController];
+                    [Tool analysis:n.url andNavController:newsbaseView.navigationController];
                 }            
             }
         }
@@ -256,7 +256,7 @@
         {
             BlogUnit *b = [news objectAtIndex:row];
             if (b) {
-                [Tool analysis:b.url andNavController:parent.navigationController];
+                [Tool analysis:b.url andNavController:newsbaseView.navigationController];
             }
         }
     }

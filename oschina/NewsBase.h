@@ -11,7 +11,7 @@
 
 @interface NewsBase : UIViewController
 
-@property (strong,nonatomic) UISegmentedControl * segment_title;
+@property (strong,nonatomic) UISegmentedControl * zongheSegment;
 @property (strong,nonatomic) NewsView * newsView;
 
 - (NSString *)getSegmentTitle;

@@ -9,35 +9,57 @@
 #import "NewsBase.h"
 
 @implementation NewsBase
-@synthesize segment_title;
+@synthesize zongheSegment;
 @synthesize newsView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        //初始化
         [self myInit];
     }
     return self;
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    self.zongheSegment = nil;
+    self.newsView = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.newsView == nil || self.zongheSegment == nil)
+    {
+        [self myInit];
+    }
+}
+
+
+
+//初始化
 - (void)myInit
 {
-    self.tabBarItem.image = [UIImage imageNamed:@"info"];
-    self.tabBarItem.title = @"综合";
-
-    NSArray *segmentTextContent = [NSArray arrayWithObjects:
-                                   @"资讯",
-                                   @"博客",
-                                   @"推荐阅读",
-                                   nil];
-    self.segment_title = [[UISegmentedControl alloc] initWithItems:segmentTextContent];
-    self.segment_title.selectedSegmentIndex = 0;
-    self.segment_title.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.segment_title.segmentedControlStyle = UISegmentedControlStyleBar;
-    self.segment_title.frame = CGRectMake(0, 0, 300, 30);
-    [self.segment_title addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = self.segment_title;
+    self.tabBarItem.image = [UIImage imageNamed:@"info"];//设置tabbar的图片
+    self.tabBarItem.title = @"综合";//设置tabbar的标题
+    
+    //初始化segment
+    NSArray *segmentTitleArray = [NSArray arrayWithObjects:
+                                  @"资讯",
+                                  @"博客",
+                                  @"推荐阅读",
+                                  nil];
+    self.zongheSegment = [[UISegmentedControl alloc] initWithItems:segmentTitleArray];
+    self.zongheSegment.selectedSegmentIndex = 0;
+    self.zongheSegment.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.zongheSegment.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.zongheSegment.frame = CGRectMake(0, 0, 300, 30);
+    [self.zongheSegment addTarget:self
+                           action:@selector(segmentAction:)//动作segmentAction
+                 forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = self.zongheSegment;
     
     //子页面初始化
     self.newsView = [[NewsView alloc] init];
@@ -45,25 +67,37 @@
     [self addChildViewController:self.newsView];
     [self.view addSubview:self.newsView.view];
     
-    //添加发布动弹的按钮
-    UIBarButtonItem *btnSearch = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    //右上角的搜索按钮
+    UIBarButtonItem *btnSearch = [[UIBarButtonItem alloc]
+                                  initWithTitle:@""
+                                  style:UIBarButtonItemStyleBordered
+                                  target:self
+                                  action:nil];
     btnSearch.image = [UIImage imageNamed:@"searchWhite"];
-    [btnSearch setAction:@selector(clickSearch:)];
+    [btnSearch setAction:@selector(clickSearch:)];//设置动作
     self.navigationItem.rightBarButtonItem = btnSearch;
 }
+
+//搜索
 - (void)clickSearch:(id)sender
 {
     SearchView * sView = [[SearchView alloc] init];
     sView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sView animated:YES];
 }
+
+//segment动作
 - (void)segmentAction:(id)sender
 {
-    [self.newsView reloadType:self.segment_title.selectedSegmentIndex+1];
+    //调用newsView的reloadType方法加载页面
+    [self.newsView reloadType:self.zongheSegment.selectedSegmentIndex+1];
 }
+
+
+//获取segment的标题：根据segment的index
 - (NSString *)getSegmentTitle
 {
-    switch (self.segment_title.selectedSegmentIndex) {
+    switch (self.zongheSegment.selectedSegmentIndex) {
         case 0:
             return @"资讯";
         case 1:
@@ -74,23 +108,6 @@
     return @"";
 }
 
-#pragma mark - View lifecycle
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.segment_title = nil;
-    self.newsView = nil;
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (self.newsView == nil || self.segment_title == nil) 
-    {
-        [self myInit];
-    }
-}
+
 
 @end
