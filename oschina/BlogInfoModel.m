@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "Blog.h"
+#import "BlogInfoModel.h"
 
-@implementation Blog
+@implementation BlogInfoModel
 
 @synthesize _id;
 @synthesize title;
@@ -34,7 +34,7 @@
                 andUrl:(NSString *)nurl 
                 andCommentCount:(int)ncommentCount
 {
-    Blog * b = [[Blog alloc] init];
+    BlogInfoModel * b = [[BlogInfoModel alloc] init];
     b._id = nid;
     b.title = ntitle;
     b.where = nwhere;

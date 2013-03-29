@@ -40,7 +40,7 @@
             [hud hide:YES];
             [Tool getOSCNotice2:operation.responseString];
             
-            Blog *b = [Tool readStrBlogDetail:operation.responseString];
+            BlogInfoModel *b = [Tool readStrBlogDetail:operation.responseString];
             if (b == nil) {
                 [Tool ToastNotification:@"加载失败" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
@@ -64,7 +64,7 @@
     {
         NSString *value = [Tool getCache:4 andID:blogID];
         if (value) {
-            Blog *b = [Tool readStrBlogDetail:value];
+            BlogInfoModel *b = [Tool readStrBlogDetail:value];
             [self loadData:b];
         }
         else {
@@ -128,7 +128,7 @@
         [self refreshFavorite:self.singleBlog];
     }
 }
-- (void)loadData:(Blog *)b
+- (void)loadData:(BlogInfoModel *)b
 {
     self.singleBlog = b;
     [self refreshFavorite:b];
@@ -146,7 +146,7 @@
     
     [Config Instance].shareObject = [[ShareObject alloc] initWithParameters:b.title andUrl:b.url];
 }
-- (void)refreshFavorite:(Blog *)b
+- (void)refreshFavorite:(BlogInfoModel *)b
 {
     btnFavorite = [[UIBarButtonItem alloc] initWithTitle:b.favorite ? @"取消收藏" : @"收藏此博客" style:UIBarButtonItemStyleBordered target:self action:@selector(clickFavorite:)];
     self.parentViewController.navigationItem.rightBarButtonItem = btnFavorite;

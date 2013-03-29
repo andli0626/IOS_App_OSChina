@@ -33,7 +33,7 @@
 #import "FTCoreTextView.h"
 //#import "FTCoreTextStyle.h"
 #import "Software.h"
-#import "Blog.h"
+#import "BlogInfoModel.h"
 #import "SingleNews.h"
 #import "SinglePostDetail.h"
 #import "ObjectReply.h"
@@ -130,7 +130,7 @@
 + (SingleNews *)readStrNewsDetail:(NSString *)str;
 + (SinglePostDetail *)readStrSinglePostDetail:(NSString *)str;
 + (Software *)readStrSoftwareDetail:(NSString *)str;
-+ (Blog *)readStrBlogDetail:(NSString *)str;
++ (BlogInfoModel *)readStrBlogDetail:(NSString *)str;
 
 + (NSMutableArray *)readStrNewsArray:(NSString *)str andOld:(NSMutableArray *)olds;
 + (NSMutableArray *)readStrUserBlogsArray:(NSString *)str andOld:(NSMutableArray *)olds;

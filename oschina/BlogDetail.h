@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "Tool.h"
-#import "Blog.h"
+#import "BlogInfoModel.h"
 
 @interface BlogDetail : UIViewController<UIWebViewDelegate>
 {
     UIBarButtonItem * btnFavorite;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (retain, nonatomic) Blog * singleBlog;
+@property (retain, nonatomic) BlogInfoModel * singleBlog;
 @property int blogID;
 
-- (void)loadData:(Blog *)b;
-- (void)refreshFavorite:(Blog *)b;
+- (void)loadData:(BlogInfoModel *)b;
+- (void)refreshFavorite:(BlogInfoModel *)b;
 @end
