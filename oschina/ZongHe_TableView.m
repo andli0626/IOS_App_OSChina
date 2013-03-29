@@ -9,55 +9,55 @@
 #import "ZongHe_TableView.h"
 
 @implementation ZongHe_TableView
-@synthesize tableNews;
+@synthesize mTableView;
 @synthesize catalog;
 
-//综合列表界面
+//综合栏目列表界面
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     allCount = 0;
-    //添加的代码
-    if (_refreshHeaderView == nil) {
+    
+    //初始化refreshEGOTableView
+    if (refreshEGOTableView == nil) {
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, -320.0f, self.view.frame.size.width, 320)];
         view.delegate = self;
-        [self.tableNews addSubview:view];
-        _refreshHeaderView = view;
+        [self.mTableView addSubview:view];
+        refreshEGOTableView = view;
     }
-    [_refreshHeaderView refreshLastUpdatedDate];
+    [refreshEGOTableView refreshLastUpdatedDate];//更新刷新时间
     
-    news = [[NSMutableArray alloc] initWithCapacity:20];
+    dataArray = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
-    self.tableNews.backgroundColor = [Tool getBackgroundColor];
+    self.mTableView.backgroundColor = [Tool getBackgroundColor];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshed:)
+                                                 name:Notification_TabClick
+                                               object:nil];
 }
 - (void)refreshed:(NSNotification *)notification
 {
     if (notification.object) {
         if ([(NSString *)notification.object isEqualToString:@"0"]) {
-            [self.tableNews setContentOffset:CGPointMake(0, -75) animated:YES];
+            [self.mTableView setContentOffset:CGPointMake(0, -75) animated:YES];
             [self performSelector:@selector(doneManualRefresh) withObject:nil afterDelay:0.4];
         }
     }
 }
 - (void)doneManualRefresh
 {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:self.tableNews];
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self.tableNews];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    [refreshEGOTableView egoRefreshScrollViewDidScroll:self.mTableView];
+    [refreshEGOTableView egoRefreshScrollViewDidEndDragging:self.mTableView];
 }
 - (void)viewDidUnload
 {
-    [self setTableNews:nil];
-    _refreshHeaderView = nil;
-    [news removeAllObjects];
-    news = nil;
+    [self setMTableView:nil];
+    refreshEGOTableView = nil;
+    [dataArray removeAllObjects];
+    dataArray = nil;
     [super viewDidUnload];
 }
 
@@ -66,13 +66,13 @@
 {
     self.catalog = ncatalog;
     [self clear];
-    [self.tableNews reloadData];
+    [self.mTableView reloadData];
     [self reload:NO];
 }
 - (void)clear
 {
     allCount = 0;
-    [news removeAllObjects];
+    [dataArray removeAllObjects];
     isLoadOver = NO;
 }
 - (void)reload:(BOOL)noRefresh
@@ -112,20 +112,20 @@
             @try {
                 NSMutableArray *newNews = self.catalog <= 1 ?
                 
-                [Tool readStrNewsArray:operation.responseString andOld: news]:
-                [Tool readStrUserBlogsArray:operation.responseString andOld: news];
+                [Tool readStrNewsArray:operation.responseString andOld: dataArray]:
+                [Tool readStrUserBlogsArray:operation.responseString andOld: dataArray];
                 int count = [Tool isListOver2:operation.responseString];
                 allCount += count;
                 if (count < 20)
                 {
                     isLoadOver = YES;
                 }
-                [news addObjectsFromArray:newNews];
-                [self.tableNews reloadData];
+                [dataArray addObjectsFromArray:newNews];
+                [self.mTableView reloadData];
                 [self doneLoadingTableViewData];
                 
                 //如果是第一页 则缓存下来
-                if (news.count <= 20) {
+                if (dataArray.count <= 20) {
                     [Tool saveCache:5 andID:self.catalog andString:operation.responseString];
                 }
             }
@@ -149,18 +149,18 @@
             }
         }];
         isLoading = YES;
-        [self.tableNews reloadData];
+        [self.mTableView reloadData];
     }
     //如果没有网络连接
     else
     {
         NSString *value = [Tool getCache:5 andID:self.catalog];
         if (value) {
-            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:news];
-            [self.tableNews reloadData];
+            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:dataArray];
+            [self.mTableView reloadData];
             isLoadOver = YES;
-            [news addObjectsFromArray:newNews];
-            [self.tableNews reloadData];
+            [dataArray addObjectsFromArray:newNews];
+            [self.mTableView reloadData];
             [self doneLoadingTableViewData];
         }
     }
@@ -171,13 +171,13 @@
 {
     if ([Config Instance].isNetworkRunning) {
         if (isLoadOver) {
-            return news.count == 0 ? 1 : news.count;
+            return dataArray.count == 0 ? 1 : dataArray.count;
         }
         else 
-            return news.count + 1;
+            return dataArray.count + 1;
     }
     else
-        return news.count;
+        return dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -189,8 +189,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([news count] > 0) {
-        if ([indexPath row] < [news count]) 
+    if ([dataArray count] > 0) {
+        if ([indexPath row] < [dataArray count]) 
         {
             ZongHeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
             if (!cell) {
@@ -204,13 +204,13 @@
             }
             cell.lblTitle.font = [UIFont boldSystemFontOfSize:15.0];
             if (self.catalog <= 1) {
-                NewsInfoModel *n = [news objectAtIndex:[indexPath row]];
+                NewsInfoModel *n = [dataArray objectAtIndex:[indexPath row]];
                 cell.lblTitle.text = n.title;
                 cell.lblAuthor.text = [NSString stringWithFormat:@"%@ 发布于 %@ (%d评)", n.author, n.pubDate, n.commentCount];
             }
             else
             {
-                BlogUnit *b = [news objectAtIndex:indexPath.row];
+                BlogUnit *b = [dataArray objectAtIndex:indexPath.row];
                 cell.lblTitle.text = b.title;
                 cell.lblAuthor.text = [NSString stringWithFormat:@"%@ %@ %@ (%d评)", b.authorName,b.documentType==1?@"原创":@"转载", b.pubDate, b.commentCount];
             }
@@ -231,7 +231,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
-    if (row >= [news count]) {
+    if (row >= [dataArray count]) {
         if (!isLoading) {
             [self performSelector:@selector(reload:)];
         }
@@ -241,7 +241,7 @@
         self.parentViewController.title = [newsbaseView getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {
-            NewsInfoModel *n = [news objectAtIndex:row];
+            NewsInfoModel *n = [dataArray objectAtIndex:row];
             if (n) 
             {
                 
@@ -256,7 +256,7 @@
         }
         else
         {
-            BlogUnit *b = [news objectAtIndex:row];
+            BlogUnit *b = [dataArray objectAtIndex:row];
             if (b) {
                 [Tool analysis:b.url andNavController:newsbaseView.navigationController];
             }
@@ -272,15 +272,15 @@
 - (void)doneLoadingTableViewData
 {
     _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableNews];
+    [refreshEGOTableView egoRefreshScrollViewDataSourceDidFinishedLoading:self.mTableView];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    [refreshEGOTableView egoRefreshScrollViewDidScroll:scrollView];
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    [refreshEGOTableView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
 {
@@ -306,19 +306,19 @@
         NSString *value = [Tool getCache:5 andID:self.catalog];
         if (value) 
         {
-            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:news];
+            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:dataArray];
             if (newNews == nil) {
-                [self.tableNews reloadData];
+                [self.mTableView reloadData];
             }
             else if(newNews.count <= 0){
-                [self.tableNews reloadData];
+                [self.mTableView reloadData];
                 isLoadOver = YES;
             }
             else if(newNews.count < 20){
                 isLoadOver = YES;
             }
-            [news addObjectsFromArray:newNews];
-            [self.tableNews reloadData];
+            [dataArray addObjectsFromArray:newNews];
+            [self.mTableView reloadData];
             [self doneLoadingTableViewData];
         }
     }

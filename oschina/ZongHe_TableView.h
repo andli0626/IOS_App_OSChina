@@ -19,17 +19,18 @@
 //下拉刷新的委托
 @interface ZongHe_TableView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITabBarControllerDelegate,UIAlertViewDelegate>
 {
-    NSMutableArray * news;
+    NSMutableArray * dataArray;
     BOOL isLoading;
     BOOL isLoadOver;
     int allCount;
     
     //下拉刷新
-    EGORefreshTableHeaderView *_refreshHeaderView;
+    EGORefreshTableHeaderView *refreshEGOTableView;
     BOOL _reloading;
 }
-@property (strong, nonatomic) IBOutlet UITableView *tableNews;
+@property (strong, nonatomic) IBOutlet UITableView *mTableView;
 @property int catalog;
+
 - (void)reloadType:(int)ncatalog;
 - (void)reload:(BOOL)noRefresh;
 
