@@ -7,7 +7,7 @@
 //
 
 #import "Message.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 
 @implementation Message
 @synthesize _id;
@@ -46,7 +46,7 @@
     
     UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(166, 252, 255, 503)];
     
-    m.height = [Tool getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0] andText:[NSString stringWithFormat:@"发给%@:\n%@",m.friendName, m.content]];
+    m.height = [ToolHelp getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0] andText:[NSString stringWithFormat:@"发给%@:\n%@",m.friendName, m.content]];
     
     return m;
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ApiError.h"
-#import "MessageSystemView.h"
+#import "CommentsView.h"
 
 @interface MessageSystemPub : UIViewController<UIActionSheetDelegate,UITextViewDelegate>
 {
@@ -19,7 +19,7 @@
 - (IBAction)backgroundDown:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *lblState1;
 @property (strong, nonatomic) IBOutlet UISwitch *switchRepost;
-@property (strong,nonatomic) MessageSystemView * parent;
+@property (strong,nonatomic) CommentsView * parent;
 @property (retain,nonatomic) NSString * btnPubTitle;
 - (IBAction)changeIsPostToMyZone:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *lbl_HeadTitle;

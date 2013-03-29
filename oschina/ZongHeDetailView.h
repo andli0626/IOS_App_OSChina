@@ -10,13 +10,13 @@
 #import "SingleNews.h"
 #import "ShareObject.h"
 #import "Notification_CommentCount.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "MessageSystemPub.h"
 #import "SingleNews.h"
 #import "RegexKitLite.h"
 #import "MBProgressHUD.h"
 
-@interface NewsDetail : UIViewController<UIWebViewDelegate>
+@interface ZongHeDetailView : UIViewController<UIWebViewDelegate>
 {
     UIBarButtonItem * btnFavorite;
 }

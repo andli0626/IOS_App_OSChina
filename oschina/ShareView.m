@@ -49,7 +49,7 @@
     tapQQ = [[UITap alloc] initWithTarget:self action:@selector(click_qqshare:)];
     [imgQQ addGestureRecognizer:tapQQ];
     
-    self.view.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
     
     if (IS_IPHONE_5) {
         self.imgSina.frame = CGRectMake(40, 137, 240, 44);

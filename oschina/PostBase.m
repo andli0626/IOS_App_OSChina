@@ -55,7 +55,7 @@
 - (void)clickPubPost:(id)sender
 {
     if ([Config Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表问答"];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表问答"];
         return;
     }
     
@@ -65,7 +65,7 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
+    [ToolHelp processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
 }
 - (void)didReceiveMemoryWarning
 {

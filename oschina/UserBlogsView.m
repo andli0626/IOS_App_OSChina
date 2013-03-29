@@ -36,7 +36,7 @@
         self.navigationItem.title = [NSString stringWithFormat:@"%@的博客", self.authorName];
     }
     
-    self.tableBlogs.backgroundColor = [Tool getBackgroundColor];
+    self.tableBlogs.backgroundColor = [ToolHelp getBackgroundColor];
 }
 
 - (void)viewDidUnload
@@ -75,15 +75,15 @@
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
                                     @try {
-                                        [Tool getOSCNotice2:operation.responseString];
+                                        [ToolHelp getOSCNotice2:operation.responseString];
                                         
                                         isLoading = NO;
                                         if (!noRefresh) {
                                             [self clear];
                                         }
                                         
-                                        NSMutableArray *newBlogs = [Tool readStrUserBlogsArray:operation.responseString andOld:blogs];
-                                        int count = [Tool isListOver2:operation.responseString];
+                                        NSMutableArray *newBlogs = [ToolHelp readStrUserBlogsArray:operation.responseString andOld:blogs];
+                                        int count = [ToolHelp isListOver2:operation.responseString];
                                         allCount += count;
                                         if (count < 20)
                                         {
@@ -114,7 +114,7 @@
                                     }
                                     isLoading = NO;
                                     if ([Config Instance].isNetworkRunning) {
-                                        [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                                     }
                                 }];
     
@@ -137,7 +137,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -154,7 +154,7 @@
                     }
                 }
             }
-            BlogUnit *n = [blogs objectAtIndex:indexPath.row];
+            BlogUnitModel *n = [blogs objectAtIndex:indexPath.row];
             cell.lblTitle.font = [UIFont boldSystemFontOfSize:15.0];
             cell.lblTitle.text = n.title;
             cell.lblAuthor.text = [NSString stringWithFormat:@"%@ %@ %@ (%d评)", n.authorName,n.documentType == 1 ? @"原创":@"转载", n.pubDate, n.commentCount];
@@ -184,11 +184,11 @@
         }
     }
     else {
-        BlogUnit *n = [blogs objectAtIndex:row];
+        BlogUnitModel *n = [blogs objectAtIndex:row];
         if (n) 
         {     
             self.navigationController.title = self.authorName;
-            [Tool analysis:n.url andNavController:self.navigationController];
+            [ToolHelp analysis:n.url andNavController:self.navigationController];
         }
     }
     
@@ -196,7 +196,7 @@
 //显示菜单  
 - (void)showMenu:(id)cell
 {  
-    BlogUnit * t = [blogs objectAtIndex:[tableBlogs indexPathForCell:cell].row];
+    BlogUnitModel * t = [blogs objectAtIndex:[tableBlogs indexPathForCell:cell].row];
     if (t) {
         if (t.authorUID != [Config Instance].getUID) {
             return;
@@ -213,20 +213,20 @@
 - (void)deleteRow:(UITableViewCell *)cell
 {
     NSIndexPath *path = [tableBlogs indexPathForCell:cell];
-    BlogUnit *c = [blogs objectAtIndex:[path row]];
+    BlogUnitModel *c = [blogs objectAtIndex:[path row]];
     
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在删除" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在删除" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient] getPath:api_userblog_delete
                              parameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", c._id],@"id",[NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",[NSString stringWithFormat:@"%d", c.authorUID],@"authoruid", nil] 
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
                                     [hud hide:YES];
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
 
-                                    ApiError *error = [Tool getApiError2:operation.responseString];
+                                    ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                     if (error == nil) {
-                                        [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                         return ;
                                     }
                                     switch (error.errorCode) {
@@ -239,7 +239,7 @@
                                         case -2:
                                         case -1:
                                         {
-                                            [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                         }
                                             break;
                                     }
@@ -247,7 +247,7 @@
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [hud hide:YES];
-                                    [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                    [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                 }];
 }
 

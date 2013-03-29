@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "EGOImageView.h"
 #import "Software.h"
 

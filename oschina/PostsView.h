@@ -11,7 +11,7 @@
 #import "PostCell.h"
 #import "PostBase.h"
 #import "SinglePost.h"
-#import "MessageSystemView.h"
+#import "CommentsView.h"
 #import "ShareView.h"
 
 #import "UITap.h"

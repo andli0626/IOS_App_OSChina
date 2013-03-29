@@ -36,7 +36,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     //设置颜色
-    self.tablePosts.backgroundColor = [Tool getBackgroundColor];
+    self.tablePosts.backgroundColor = [ToolHelp getBackgroundColor];
     //双击Tab更新
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick object:nil];
     
@@ -146,13 +146,13 @@
         [[AFOSCClient sharedClient] getPath:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
             @try {
-                [Tool getOSCNotice2:operation.responseString];
+                [ToolHelp getOSCNotice2:operation.responseString];
                 isLoading = NO;
                 if (!noRefresh) {
                     [self clear];
                 }
-                NSMutableArray * newPosts = [Tool readStrPostArray:operation.responseString andOld: posts];
-                int count = [Tool isListOver2:operation.responseString];
+                NSMutableArray * newPosts = [ToolHelp readStrPostArray:operation.responseString andOld: posts];
+                int count = [ToolHelp isListOver2:operation.responseString];
                 allCount += count;
                 if (count < 20) {
                     isLoadOver = YES;
@@ -164,7 +164,7 @@
                 //如果是第一页 则缓存下来
                 if (posts.count <= 20) 
                 {
-                    [Tool saveCache:6 andID:self.catalog andString:operation.responseString];
+                    [ToolHelp saveCache:6 andID:self.catalog andString:operation.responseString];
                 }
             }
             @catch (NSException *exception) {
@@ -184,7 +184,7 @@
                 return;
             }
             if ([Config Instance].isNetworkRunning) {
-                [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
             }
         }];
         
@@ -193,9 +193,9 @@
     }
     else
     {
-        NSString *value = [Tool getCache:6 andID:self.catalog];
+        NSString *value = [ToolHelp getCache:6 andID:self.catalog];
         if (value) {
-            NSMutableArray * newPosts = [Tool readStrPostArray:value andOld:posts];
+            NSMutableArray * newPosts = [ToolHelp readStrPostArray:value andOld:posts];
             [self.tablePosts reloadData];
             isLoadOver = YES;
             [posts addObjectsFromArray:newPosts];
@@ -228,7 +228,7 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -304,7 +304,7 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        [Tool pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
+        [ToolHelp pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -325,13 +325,13 @@
             PostBase * parent = (PostBase *)self.parentViewController;     
             if (self.tag != nil) {
                 self.navigationController.title = self.tag;
-                [Tool pushPostDetail:p andNavController:self.navigationController];
+                [ToolHelp pushPostDetail:p andNavController:self.navigationController];
             }
             else
             {
                 self.parentViewController.title = [parent getSegmentTitle];
                 self.parentViewController.tabBarItem.title = @"问答";
-                [Tool pushPostDetail:p andNavController:self.parentViewController.navigationController];
+                [ToolHelp pushPostDetail:p andNavController:self.parentViewController.navigationController];
             }
         }
     }
@@ -376,9 +376,9 @@
     }    
     else
     {
-        NSString *value = [Tool getCache:6 andID:self.catalog];
+        NSString *value = [ToolHelp getCache:6 andID:self.catalog];
         if (value) {
-            NSMutableArray * newPosts = [Tool readStrPostArray:value andOld:posts];
+            NSMutableArray * newPosts = [ToolHelp readStrPostArray:value andOld:posts];
             if (newPosts == nil) {
                 [self.tablePosts reloadData];
                 isLoadOver = YES;

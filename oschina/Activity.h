@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ObjectReply.h"
 #import "FTCoreTextView.h"
 #import "RTLabel.h"

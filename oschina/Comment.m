@@ -7,7 +7,7 @@
 //
 
 #import "Comment.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 
 @implementation Comment
 
@@ -49,7 +49,7 @@
     c.appClient = nappclient;
     c.width_bubble = 0;
     if (nrefers != nil && nrefers.count > 0) {
-        UIView * referView = [Tool getReferView:nrefers];
+        UIView * referView = [ToolHelp getReferView:nrefers];
         c.height_reference = referView.frame.size.height + 7;
     }
     else {
@@ -57,7 +57,7 @@
     }
     
     UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(170, 474, 260, 922)];
-    c.height = [Tool getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0] andText:c.content];
+    c.height = [ToolHelp getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0] andText:c.content];
     if (c.replies && [c.replies count] > 0 ) {
         c.height += 13+19+[c.replies count]*35;
     }

@@ -214,7 +214,7 @@
     [[AFOSCClient sharedClient] getPath:url parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     

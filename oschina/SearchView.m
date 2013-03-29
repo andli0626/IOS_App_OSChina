@@ -20,8 +20,8 @@
     allCount = 0;
     [super viewDidLoad];
     self.navigationItem.title = @"搜索";
-    self.view.backgroundColor = [Tool getBackgroundColor];
-    self.tableResult.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
+    self.tableResult.backgroundColor = [ToolHelp getBackgroundColor];
     results = [[NSMutableArray alloc] initWithCapacity:20];
     
     self.navigationItem.titleView = self.segmentSearch;
@@ -86,9 +86,9 @@
         
         [self._searchBar resignFirstResponder];
         self.tableResult.hidden = NO;
-        [Tool getOSCNotice2:operation.responseString];
+        [ToolHelp getOSCNotice2:operation.responseString];
         isLoading = NO;
-        int count = [Tool isListOver2:operation.responseString];
+        int count = [ToolHelp isListOver2:operation.responseString];
         allCount += count;
         NSString *response = operation.responseString;
         @try {
@@ -115,8 +115,8 @@
             TBXMLElement *pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
             NSString * pubDateStr = [TBXML textForElement:pubDate];
             TBXMLElement *author = [TBXML childElementNamed:@"author" parentElement:first];
-            SearchResult * s = [[SearchResult alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andPubDate:[pubDateStr isEqualToString:@""] ? @"" : [Tool intervalSinceNow:pubDateStr] andAuthor:[TBXML textForElement:author]];
-            if (![Tool isRepeatSearch:results andResult:s]) {
+            SearchResult * s = [[SearchResult alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andPubDate:[pubDateStr isEqualToString:@""] ? @"" : [ToolHelp intervalSinceNow:pubDateStr] andAuthor:[TBXML textForElement:author]];
+            if (![ToolHelp isRepeatSearch:results andResult:s]) {
                 [newResults addObject:s];
             }
             while (first) {
@@ -128,8 +128,8 @@
                     url = [TBXML childElementNamed:@"url" parentElement:first];
                     pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
                     author = [TBXML childElementNamed:@"author" parentElement:first];
-                    s = [[SearchResult alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andAuthor:[TBXML textForElement:author]];
-                    if (![Tool isRepeatSearch:results andResult:s]) {
+                    s = [[SearchResult alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andPubDate:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andAuthor:[TBXML textForElement:author]];
+                    if (![ToolHelp isRepeatSearch:results andResult:s]) {
                         [newResults addObject:s];
                     }
                 }
@@ -153,7 +153,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
     }];
     
     [self.tableResult reloadData];
@@ -188,7 +188,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -241,7 +241,7 @@
         SearchResult * s = [results objectAtIndex:row];
         if (s) 
         {
-            [Tool analysis:s.url andNavController:self.navigationController];
+            [ToolHelp analysis:s.url andNavController:self.navigationController];
         }
     }
 }

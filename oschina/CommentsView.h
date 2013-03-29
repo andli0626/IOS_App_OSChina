@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Comment.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ApiError.h"
 #import "ReplyMsgView.h"
 #import "MsgCell.h"
@@ -21,7 +21,7 @@
 #define FetchCount 10;
 
 @class MessageSystemPub;
-@interface MessageSystemView : UIViewController<UITableViewDataSource, UITableViewDelegate,IconDownloaderDelegate,EGORefreshTableHeaderDelegate,UIActionSheetDelegate>
+@interface CommentsView : UIViewController<UITableViewDataSource, UITableViewDelegate,IconDownloaderDelegate,EGORefreshTableHeaderDelegate,UIActionSheetDelegate>
 {
     BOOL isLoading;
     BOOL isLoadOver;

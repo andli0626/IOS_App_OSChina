@@ -18,8 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [Tool getBackgroundColor];
-    self.tableSoftwareCatalogs.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
+    self.tableSoftwareCatalogs.backgroundColor = [ToolHelp getBackgroundColor];
     softwareCatalogs = [[NSMutableArray alloc] initWithCapacity:20];
     
     [self reload];
@@ -49,7 +49,7 @@
     [[AFOSCClient sharedClient]getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSString *response = operation.responseString;
-        [Tool getOSCNotice2:response];
+        [ToolHelp getOSCNotice2:response];
         isLoading = NO;
         @try {
             
@@ -71,7 +71,7 @@
             TBXMLElement *name = [TBXML childElementNamed:@"name" parentElement:first];
             TBXMLElement *_tag = [TBXML childElementNamed:@"tag" parentElement:first];
             SoftwareCatalog * s = [[SoftwareCatalog alloc] initWithParameters:[TBXML textForElement:name] andTag:[[TBXML textForElement:_tag] intValue]];
-            if (![Tool isRepeatSoftwareCatalog:softwareCatalogs andSoftwareCatalog:s]) {
+            if (![ToolHelp isRepeatSoftwareCatalog:softwareCatalogs andSoftwareCatalog:s]) {
                 [newResults addObject:s];
             }
             while (first) {
@@ -80,7 +80,7 @@
                     name = [TBXML childElementNamed:@"name" parentElement:first];
                     _tag = [TBXML childElementNamed:@"tag" parentElement:first];
                     s = [[SoftwareCatalog alloc] initWithParameters:[TBXML textForElement:name] andTag:[[TBXML textForElement:_tag] intValue]];
-                    if (![Tool isRepeatSoftwareCatalog:softwareCatalogs andSoftwareCatalog:s]) {
+                    if (![ToolHelp isRepeatSoftwareCatalog:softwareCatalogs andSoftwareCatalog:s]) {
                         [newResults addObject:s];
                     }
                 }
@@ -101,7 +101,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [Tool ToastNotification:@"网络连接错误" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"网络连接错误" andView:self.view andLoading:NO andIsBottom:NO];
         return ;
     }];
     
@@ -129,7 +129,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

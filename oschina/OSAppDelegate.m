@@ -23,7 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {   
     //设置 UserAgent
-    [ASIHTTPRequest setDefaultUserAgentString:[NSString stringWithFormat:@"%@/%@", [Tool getOSVersion], [Config Instance].getIOSGuid]];
+    [ASIHTTPRequest setDefaultUserAgentString:[NSString stringWithFormat:@"%@/%@", [ToolHelp getOSVersion], [Config Instance].getIOSGuid]];
     
     //显示系统托盘
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];

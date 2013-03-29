@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "Blog.h"
 
 @interface BlogDetail : UIViewController<UIWebViewDelegate>

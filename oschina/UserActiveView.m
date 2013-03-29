@@ -51,7 +51,7 @@
 
     self.parentViewController.navigationItem.rightBarButtonItem = info;
     
-    self.tableActivies.backgroundColor = [Tool getBackgroundColor];
+    self.tableActivies.backgroundColor = [ToolHelp getBackgroundColor];
 
     [self reload:YES andNoRefresh:YES];
     //下拉刷新
@@ -130,13 +130,13 @@
                                     }
                                     
                                     self.parentViewController.navigationItem.rightBarButtonItem.enabled = YES;
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     isLoading = NO;
                                     NSString *response = operation.responseString;
                                     @try {
                                         
                                         TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
-                                        int count = [Tool isListOver2:operation.responseString];
+                                        int count = [ToolHelp isListOver2:operation.responseString];
                                         allCount += count;
                                         if (count < 20) {
                                             isLoadOver = YES;
@@ -184,8 +184,8 @@
                                             reply = [[ObjectReply alloc] initWithParameter:[TBXML textForElement:objectname] andBody:[TBXML textForElement:objectbody]];
                                         }
                                         TBXMLElement *tweetImage = [TBXML childElementNamed:@"tweetimage" parentElement:first];
-                                        Activity *a = [[Activity alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andCatalog:[[TBXML textForElement:_catalog] intValue] andObjectid:[[TBXML textForElement:objectID] intValue] andMessage:[TBXML textForElement:message] andPubDate:appClient ? [NSString stringWithFormat:@"%@ %@",[Tool intervalSinceNow:[TBXML textForElement:pubDate]],[Tool getAppClientString:[[TBXML textForElement:appClient] intValue]]]:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue] andObjectType:[[TBXML textForElement:objectType] intValue] andObjectCatalog:[[TBXML textForElement:objectCatalog] intValue] andObjectTitle:[TBXML textForElement:objectTitle] andForUserView:NO andReply:reply andImgTweet:[TBXML textForElement:tweetImage] andUrl:[TBXML textForElement:url]];
-                                        if (![Tool isRepeatActive: activies andActive:a]) {
+                                        Activity *a = [[Activity alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andCatalog:[[TBXML textForElement:_catalog] intValue] andObjectid:[[TBXML textForElement:objectID] intValue] andMessage:[TBXML textForElement:message] andPubDate:appClient ? [NSString stringWithFormat:@"%@ %@",[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]],[ToolHelp getAppClientString:[[TBXML textForElement:appClient] intValue]]]:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue] andObjectType:[[TBXML textForElement:objectType] intValue] andObjectCatalog:[[TBXML textForElement:objectCatalog] intValue] andObjectTitle:[TBXML textForElement:objectTitle] andForUserView:NO andReply:reply andImgTweet:[TBXML textForElement:tweetImage] andUrl:[TBXML textForElement:url]];
+                                        if (![ToolHelp isRepeatActive: activies andActive:a]) {
                                             [newActivies addObject:a];
                                         }
                                         while (first) {
@@ -216,8 +216,8 @@
                                                     reply = [[ObjectReply alloc] initWithParameter:[TBXML textForElement:objectname] andBody:[TBXML textForElement:objectbody]];
                                                 }
                                                 
-                                                a = [[Activity alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andCatalog:[[TBXML textForElement:_catalog] intValue] andObjectid:[[TBXML textForElement:objectID] intValue] andMessage:[TBXML textForElement:message]   andPubDate:appClient ? [NSString stringWithFormat:@"%@ %@",[Tool intervalSinceNow:[TBXML textForElement:pubDate]],[Tool getAppClientString:[[TBXML textForElement:appClient] intValue]]]:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue] andObjectType:[[TBXML textForElement:objectType] intValue] andObjectCatalog:[[TBXML textForElement:objectCatalog] intValue] andObjectTitle:[TBXML textForElement:objectTitle] andForUserView:NO andReply:reply andImgTweet:[TBXML textForElement:tweetImage] andUrl:[TBXML textForElement:url]];
-                                                if (![Tool isRepeatActive: activies andActive:a]) {
+                                                a = [[Activity alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andCatalog:[[TBXML textForElement:_catalog] intValue] andObjectid:[[TBXML textForElement:objectID] intValue] andMessage:[TBXML textForElement:message]   andPubDate:appClient ? [NSString stringWithFormat:@"%@ %@",[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]],[ToolHelp getAppClientString:[[TBXML textForElement:appClient] intValue]]]:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue] andObjectType:[[TBXML textForElement:objectType] intValue] andObjectCatalog:[[TBXML textForElement:objectCatalog] intValue] andObjectTitle:[TBXML textForElement:objectTitle] andForUserView:NO andReply:reply andImgTweet:[TBXML textForElement:tweetImage] andUrl:[TBXML textForElement:url]];
+                                                if (![ToolHelp isRepeatActive: activies andActive:a]) {
                                                     [newActivies addObject:a];
                                                 }
                                             }
@@ -356,7 +356,7 @@
             return;
         }
         if (a.url.length > 0) {
-            [Tool analysis:a.url andNavController:self.navigationController];
+            [ToolHelp analysis:a.url andNavController:self.navigationController];
         }
         else
         {
@@ -369,21 +369,21 @@
                 {
                     NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n._id = a.objectid;
-                    [Tool pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
+                    [ToolHelp pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
                 }
                     break;
                 case 2:
                 {
                     PostInfoModel *p = [[PostInfoModel alloc] init];
                     p._id = a.objectid;
-                    [Tool pushPostDetail:p andNavController:self.navigationController]; 
+                    [ToolHelp pushPostDetail:p andNavController:self.navigationController]; 
                 }
                     break;
                 case 3:
                 {
                     Tweet *t = [[Tweet alloc] init];
                     t._id = a.objectid;
-                    [Tool pushTweetDetail:t andNavController:self.navigationController];
+                    [ToolHelp pushTweetDetail:t andNavController:self.navigationController];
                 }
                     break;
                 case 4:
@@ -392,7 +392,7 @@
                     NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 3;
                     n.attachment = [NSString stringWithFormat:@"%d", a.objectid];
-                    [Tool pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
+                    [ToolHelp pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
                 }
                     break;
             }
@@ -401,7 +401,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

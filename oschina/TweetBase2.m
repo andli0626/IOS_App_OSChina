@@ -51,7 +51,7 @@
 - (void)clickPubTweet:(id)sender
 {
     if ([Config Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表动弹"];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表动弹"];
         return;
     }
     PubTweet * pubTweet = [[PubTweet alloc] init];
@@ -60,7 +60,7 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
+    [ToolHelp processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
 }
 - (void)segmentAction:(id)sender
 {
@@ -80,7 +80,7 @@
             int myUID = [Config Instance].getUID;
             if (myUID == 0 || [Config Instance].isCookie == NO) {
                 [self.twitterView reloadUID:0];
-                [Tool ToastNotification:@"错误 你还未登录,将显示最新动弹" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"错误 你还未登录,将显示最新动弹" andView:self.view andLoading:NO andIsBottom:NO];
             }
             else
             {

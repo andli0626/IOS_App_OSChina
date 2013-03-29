@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Message.h"
-#import "MessageSystemView.h"
+#import "CommentsView.h"
 #import "MessageCell.h"
 #import "PubMessage.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ApiError.h"
 #import "MyBubbleView.h"
 

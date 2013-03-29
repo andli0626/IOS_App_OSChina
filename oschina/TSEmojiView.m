@@ -313,7 +313,7 @@
                         nil];
         
 //        self.backgroundColor = [[UIColor alloc] initWithRed:239 green:245 blue:245 alpha:255];
-        self.backgroundColor = [Tool getBackgroundColor];
+        self.backgroundColor = [ToolHelp getBackgroundColor];
         rectBg = [UIImage imageNamed:@"k.png"];
     }
     return self;

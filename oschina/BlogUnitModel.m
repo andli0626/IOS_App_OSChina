@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "BlogUnit.h"
+#import "BlogUnitModel.h"
 
-@implementation BlogUnit
+@implementation BlogUnitModel
 
 @synthesize _id;
 @synthesize url;
@@ -28,7 +28,7 @@
                   andCommentCount:(int)nCommentCount 
                   andDocumentType:(int)nDocumentType
 {
-    BlogUnit *b = [[BlogUnit alloc] init];
+    BlogUnitModel *b = [[BlogUnitModel alloc] init];
     b._id = nid;
     b.url = nurl;
     b.title = ntitle;

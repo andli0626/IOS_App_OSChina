@@ -33,7 +33,7 @@
     
     favorites = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
-    self.tableFavorites.backgroundColor = [Tool getBackgroundColor];
+    self.tableFavorites.backgroundColor = [ToolHelp getBackgroundColor];
 }
 - (void)viewDidUnload
 {
@@ -73,14 +73,14 @@
                                        }
                                        
                                        [self doneLoadingTableViewData];
-                                       [Tool getOSCNotice2:operation.responseString];
+                                       [ToolHelp getOSCNotice2:operation.responseString];
 
                                        isLoading = NO;
                                        
                                        NSString *response = operation.responseString;
                                        @try {
                                            TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
-                                           int count = [Tool isListOver2:response];
+                                           int count = [ToolHelp isListOver2:response];
                                            allCount += count;
                                            
                                            if (count < 20) {
@@ -108,7 +108,7 @@
                                            TBXMLElement *title = [TBXML childElementNamed:@"title" parentElement:first];
                                            TBXMLElement *url = [TBXML childElementNamed:@"url" parentElement:first];
                                            Favorite *f = [[Favorite alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url]];
-                                           if (![Tool isRepeatFavorite:favorites andFav:f]) {
+                                           if (![ToolHelp isRepeatFavorite:favorites andFav:f]) {
                                                [newFavs addObject:f];
                                            }
                                            while (first) {
@@ -119,7 +119,7 @@
                                                    title = [TBXML childElementNamed:@"title" parentElement:first];
                                                    url = [TBXML childElementNamed:@"url" parentElement:first];
                                                    f = [[Favorite alloc] initWithParameters:[[TBXML textForElement:objid] intValue] andType:[[TBXML textForElement:type] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url]];
-                                                   if (![Tool isRepeatFavorite:favorites andFav:f]) {
+                                                   if (![ToolHelp isRepeatFavorite:favorites andFav:f]) {
                                                        [newFavs addObject:f];
                                                    }
                                                }
@@ -147,7 +147,7 @@
                                        
                                        isLoading = NO;
                                        if ([Config Instance].isNetworkRunning) {
-                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                           [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                                        }
                                        
                                    }];
@@ -200,7 +200,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -252,7 +252,7 @@
         if (f) 
         {
             //根据url处理
-            [Tool analysis:f.url andNavController:self.navigationController];
+            [ToolHelp analysis:f.url andNavController:self.navigationController];
         }
     }
 }
@@ -274,15 +274,15 @@
     //验证登录
     
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在取消收藏" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在取消收藏" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient] getPath:api_favorite_delete parameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",[Config Instance].getUID],@"uid",[NSString stringWithFormat:@"%d", c.objid],@"objid",[NSString stringWithFormat:@"%d", c.type],@"type", nil] 
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
                                     [hud hide:YES];
-                                    [Tool getOSCNotice2:operation.responseString];
-                                    ApiError *error = [Tool getApiError2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
+                                    ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                     if (error == nil) {
-                                        [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                         return;
                                     }
                                     switch (error.errorCode) {
@@ -295,7 +295,7 @@
                                         case -2:
                                         case -1:
                                         {
-                                            [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                         }
                                             break;
                                     }
@@ -303,7 +303,7 @@
                                     
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud hide:YES];
-        [Tool ToastNotification:@"取消收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"取消收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
     }];
 } 
 

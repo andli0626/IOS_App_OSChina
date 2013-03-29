@@ -61,7 +61,7 @@
     a.objectTitle = nObjectTitle;
     a.objectType = nobjectType;
     a.reply = nreply;
-    a.result = [Tool getTextViewString2:a.author andObjectType:a.objectType andObjectCatalog:a.objectCatalog andObjectTitle:a.objectTitle andMessage:a.message andPubDate:a.fromNowOn andReply:a.reply];
+    a.result = [ToolHelp getTextViewString2:a.author andObjectType:a.objectType andObjectCatalog:a.objectCatalog andObjectTitle:a.objectTitle andMessage:a.message andPubDate:a.fromNowOn andReply:a.reply];
     RTLabel *lbl = [RTActiveCell textLabel];
     lbl.text = a.result;
     a.height = [lbl optimumSize].height;

@@ -96,7 +96,7 @@
     
     //对photo进行处理
     [[MyThread Instance] startUpdatePortrait:UIImageJPEGRepresentation(photo, 0.75f)];
-    [Tool ToastNotification:@"正在上传您的头像" andView:self.view andLoading:YES andIsBottom:NO];
+    [ToolHelp ToastNotification:@"正在上传您的头像" andView:self.view andLoading:YES andIsBottom:NO];
 }
 
 - (void) photoCropperDidCancel:(SSPhotoCropperViewController *)photoCropper
@@ -111,21 +111,21 @@
     NSString * url = [NSString stringWithFormat:@"%@?uid=%d",api_my_information,[Config Instance].getUID];
 
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在获取信息" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在获取信息" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient] getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [hud hide:YES];
-        [Tool getOSCNotice2:operation.responseString]; 
+        [ToolHelp getOSCNotice2:operation.responseString]; 
         @try {
             TBXML *xml = [[TBXML alloc] initWithXMLString:operation.responseString error:nil];
             TBXMLElement *root = xml.rootXMLElement;
             if (root == nil) {
-                [Tool ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             TBXMLElement *user = [TBXML childElementNamed:@"user" parentElement:root];
             if (user == nil) {
-                [Tool ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             TBXMLElement *name = [TBXML childElementNamed:@"name" parentElement:user];
@@ -170,7 +170,7 @@
                       nil];
 
             third = [[NSArray alloc] initWithObjects:
-                     [[SettingModel alloc] initWith:[Tool intervalSinceNow:[TBXML textForElement:joinTime]] andImg:nil andTag:3 andTitle2:@"加入时间"],
+                     [[SettingModel alloc] initWith:[ToolHelp intervalSinceNow:[TBXML textForElement:joinTime]] andImg:nil andTag:3 andTitle2:@"加入时间"],
                      [[SettingModel alloc] initWith:[TBXML textForElement:from] andImg:nil andTag:4 andTitle2:@"所在地区"],
                      [[SettingModel alloc] initWith:[TBXML textForElement:dev] andImg:nil andTag:5 andTitle2:@"开发平台"],
                      [[SettingModel alloc] initWith:[TBXML textForElement:expertise] andImg:nil andTag:6 andTitle2:@"专长领域"],
@@ -190,7 +190,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [hud hide:YES];
-        [Tool ToastNotification:@"网络连接错误" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"网络连接错误" andView:self.view andLoading:NO andIsBottom:NO];
     }];
 }
 - (void)viewDidUnload

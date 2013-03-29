@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BlogUnit.h"
-#import "Tool.h"
+#import "BlogUnitModel.h"
+#import "ToolHelp.h"
 
 @interface UserBlogsView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
 {

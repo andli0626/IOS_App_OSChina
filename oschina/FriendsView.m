@@ -54,7 +54,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    self.tableFriends.backgroundColor = [Tool getBackgroundColor];
+    self.tableFriends.backgroundColor = [ToolHelp getBackgroundColor];
     
     //类型
     if (isFansType) {
@@ -96,7 +96,7 @@
                 [self doneLoadingTableViewData];
                 isLoading = NO;
                 NSString *response = operation.responseString;
-                [Tool getOSCNotice2:response];
+                [ToolHelp getOSCNotice2:response];
                 @try {
                     
                     TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
@@ -121,7 +121,7 @@
                     TBXMLElement *expertise = [TBXML childElementNamed:@"expertise" parentElement:first];
                     TBXMLElement *gender = [TBXML childElementNamed:@"gender" parentElement:first];
                     Friend *f = [[Friend alloc] initWithParameters:[TBXML textForElement:name] andUID:[[TBXML textForElement:userid] intValue] andPortrait:[TBXML textForElement:portrait] andExpertise:[TBXML textForElement:expertise] andMale:[[TBXML textForElement:gender] intValue] == 1];
-                    if (![Tool isRepeatFriend: friends andFriend:f]) {
+                    if (![ToolHelp isRepeatFriend: friends andFriend:f]) {
                         [newFriends addObject:f];
                     }
                     while (first) {
@@ -133,7 +133,7 @@
                             expertise = [TBXML childElementNamed:@"expertise" parentElement:first];
                             gender = [TBXML childElementNamed:@"gender" parentElement:first];
                             f = [[Friend alloc] initWithParameters:[TBXML textForElement:name] andUID:[[TBXML textForElement:userid] intValue] andPortrait:[TBXML textForElement:portrait] andExpertise:[TBXML textForElement:expertise] andMale:[[TBXML textForElement:gender] intValue] == 1];
-                            if (![Tool isRepeatFriend:friends andFriend:f]) {
+                            if (![ToolHelp isRepeatFriend:friends andFriend:f]) {
                                 [newFriends addObject:f];
                             }
                         }
@@ -162,7 +162,7 @@
                 [self doneLoadingTableViewData];
                 isLoading = NO;
                 if ([Config Instance].isNetworkRunning) {
-                    [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                    [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                 }
                 
             }];
@@ -201,7 +201,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -268,7 +268,7 @@
     else {
         Friend * f = [friends objectAtIndex:row];
         if (f) {
-            [Tool pushUserDetail:f.userID andNavController:self.navigationController];
+            [ToolHelp pushUserDetail:f.userID andNavController:self.navigationController];
         }
     }
 }

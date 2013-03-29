@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ApiError.h"
 #import "NewsInfoModel.h"
 #import "PostInfoModel.h"
 #import "Activity.h"
 #import "ActivesView.h"
 #import "SinglePost.h"
-#import "NewsDetail.h"
-#import "MessageSystemView.h"
+#import "ZongHeDetailView.h"
+#import "CommentsView.h"
 #import "ShareView.h"
 #import "Message.h"
 #import "Comment.h"
@@ -44,12 +44,12 @@
 #import "Friend.h"
 #import "SoftwareUnit.h"
 #import "SoftwareCatalog.h"
-#import "BlogUnit.h"
+#import "BlogUnitModel.h"
 #import "UserView2.h"
 #import "PostsView.h"
 #import <CommonCrypto/CommonCryptor.h>
 
-@interface Tool : NSObject
+@interface ToolHelp : NSObject
 
 + (UIAlertView *)getLoadingView:(NSString *)title andMessage:(NSString *)message;
 
@@ -125,7 +125,7 @@
 + (BOOL)isRepeatFriend:(NSMutableArray *)all andFriend:(Friend *)f;
 + (BOOL)isRepeatSoftware:(NSMutableArray *)all andSoftware:(SoftwareUnit *)s;
 + (BOOL)isRepeatSoftwareCatalog:(NSMutableArray *)all andSoftwareCatalog:(SoftwareCatalog *)s;
-+ (BOOL)isRepeatUserBlog:(NSMutableArray *)all andBlogUnit:(BlogUnit *)b;
++ (BOOL)isRepeatUserBlog:(NSMutableArray *)all andBlogUnit:(BlogUnitModel *)b;
 
 + (SingleNews *)readStrNewsDetail:(NSString *)str;
 + (SinglePostDetail *)readStrSinglePostDetail:(NSString *)str;

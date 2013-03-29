@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [Tool roundTextView:txtContent];
+    [ToolHelp roundTextView:txtContent];
     //显示正确的按钮字符
     //如果父级别是 问答 则改成我要回帖
     if (self.catalog == 2) {
@@ -47,7 +47,7 @@
     UIBarButtonItem *_btnPub = [[UIBarButtonItem alloc] initWithTitle:@"立即发表" style:UIBarButtonItemStyleBordered target:self action:@selector(clickComment:)];
     self.navigationItem.rightBarButtonItem = _btnPub;
     
-    self.view.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
     [txtContent becomeFirstResponder];
     self.txtContent.delegate = self;
 }
@@ -80,12 +80,12 @@
     
     NSString *content = self.txtContent.text;
     if ([content isEqualToString:@""]) {
-        [Tool ToastNotification:@"错误 内容不能为空" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"错误 内容不能为空" andView:self.view andLoading:NO andIsBottom:NO];
         return;
     }
     //登录验证 如果没有验证需要提示登录
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在发表" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在发表" andView:self.view andHUD:hud];
     
     if (parent.commentType != 5) 
     {
@@ -100,10 +100,10 @@
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          
                                          [hud hide:YES];
-                                         [Tool getOSCNotice2:operation.responseString];
-                                         ApiError *error = [Tool getApiError2:operation.responseString];
+                                         [ToolHelp getOSCNotice2:operation.responseString];
+                                         ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                          if (error == nil) {
-                                             [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                             [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                              return ;
                                          }
                                          switch (error.errorCode) {
@@ -111,7 +111,7 @@
                                              {
                                                  [[Config Instance] saveCommentCache:nil andCommentID:self.parentID];
                                                  //获取刚才发表的评论并保存在内存中
-                                                 Comment *c = [Tool getMyLatestComment2:operation.responseString];
+                                                 Comment *c = [ToolHelp getMyLatestComment2:operation.responseString];
                                                  if (c && isListIn) {
                                                      [Config Instance].tempComment = c;
                                                      [Config Instance].tempComment.catalog = self.catalog;
@@ -127,20 +127,20 @@
                                              case 0:
                                              {
                                                  commentBeforeLogin = txtContent.text;
-                                                 [Tool noticeLogin:self.view andDelegate:self andTitle:[Tool getCommentLoginNoticeByCatalog:self.catalog]];
+                                                 [ToolHelp noticeLogin:self.view andDelegate:self andTitle:[ToolHelp getCommentLoginNoticeByCatalog:self.catalog]];
                                              }
                                                  break;
                                              case -2:
                                              case -1:
                                              {
-                                                 [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                                 [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                              }
                                                  break;
                                          }
                                          
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          [hud hide:YES];
-                                         [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                         [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                      }];
     }
     else
@@ -153,10 +153,10 @@
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                         
                                          [hud hide:YES];
-                                         [Tool getOSCNotice2:operation.responseString];
-                                         ApiError *error = [Tool getApiError2:operation.responseString];
+                                         [ToolHelp getOSCNotice2:operation.responseString];
+                                         ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                          if (error == nil) {
-                                             [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                             [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                              return ;
                                          }
                                          switch (error.errorCode) {
@@ -164,7 +164,7 @@
                                              {
                                                  [[Config Instance] saveCommentCache:nil andCommentID:self.parentID];
                                                  //获取刚才发表的评论并保存在内存中
-                                                 Comment *c = [Tool getMyLatestComment2:operation.responseString];
+                                                 Comment *c = [ToolHelp getMyLatestComment2:operation.responseString];
                                                  if (c && isListIn) {
                                                      [Config Instance].tempComment = c;
                                                      [Config Instance].tempComment.catalog = self.catalog;
@@ -180,27 +180,27 @@
                                              case 0:
                                              {
                                                  commentBeforeLogin = txtContent.text;
-                                                 [Tool noticeLogin:self.view andDelegate:self andTitle:[Tool getCommentLoginNoticeByCatalog:self.catalog]];
+                                                 [ToolHelp noticeLogin:self.view andDelegate:self andTitle:[ToolHelp getCommentLoginNoticeByCatalog:self.catalog]];
                                              }
                                                  break;
                                              case -2:
                                              case -1:
                                              {
-                                                 [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                                 [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                              }
                                                  break;
                                          }
                                          
                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                       [hud hide:YES];
-                                      [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                      [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                   }];
         
     }
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
+    [ToolHelp processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
 }
 //关闭键盘
 - (IBAction)backgroundDown:(id)sender {

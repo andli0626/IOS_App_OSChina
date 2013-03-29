@@ -53,7 +53,7 @@
     
     [[AFOSCClient sharedClient]getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [Tool getOSCNotice2:operation.responseString];
+        [ToolHelp getOSCNotice2:operation.responseString];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -71,11 +71,11 @@
 }
 - (void)requestPub:(ASIHTTPRequest *)request
 {
-    [Tool getOSCNotice:request];
+    [ToolHelp getOSCNotice:request];
     if (request.hud) {
         [request.hud hide:YES];
     }
-    ApiError *error = [Tool getApiError:request];
+    ApiError *error = [ToolHelp getApiError:request];
     switch (error.errorCode) {
         case 1:
         {
@@ -83,7 +83,7 @@
             [Config Instance].tweet = nil;
             [Config Instance].tweetCachePic = nil;
             UIView *v = [UIApplication sharedApplication].keyWindow;
-            [Tool ToastNotification:@"动弹后台发布成功" andView:v andLoading:NO andIsBottom:YES];
+            [ToolHelp ToastNotification:@"动弹后台发布成功" andView:v andLoading:NO andIsBottom:YES];
         }
             break;
         case 0:
@@ -97,17 +97,17 @@
 }
 - (void)requestPortrait:(ASIHTTPRequest *)request
 {
-    [Tool getOSCNotice:request];
+    [ToolHelp getOSCNotice:request];
     if (request.hud) {
         [request.hud hide:YES];
     }
-    ApiError *error = [Tool getApiError:request];
+    ApiError *error = [ToolHelp getApiError:request];
     switch (error.errorCode) {
         case 1:
         {
             NSLog(@"更新头像成功");
             UIView *v = [UIApplication sharedApplication].keyWindow;
-            [Tool ToastNotification:@"成功更新您的头像" andView:v andLoading:NO andIsBottom:YES];
+            [ToolHelp ToastNotification:@"成功更新您的头像" andView:v andLoading:NO andIsBottom:YES];
             //重新获取自我头像
         }
             break;

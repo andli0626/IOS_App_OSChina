@@ -22,7 +22,7 @@
 {
     [super viewDidLoad];
     self.title = @"软件详情";
-    [Tool clearWebViewBackground:webView];
+    [ToolHelp clearWebViewBackground:webView];
     self.webView.delegate = self;
 
     self.webView.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height - 44 - 20);
@@ -31,43 +31,43 @@
     if ([Config Instance].isNetworkRunning) {
 
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-        [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
+        [ToolHelp showHUD:@"正在加载" andView:self.view andHUD:hud];
         
         NSString *url = [NSString stringWithFormat:@"%@?ident=%@",api_software_detail, self.softwareName];
         [[AFOSCClient sharedClient] getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             [hud hide:YES];
-            [Tool getOSCNotice2:operation.responseString];
+            [ToolHelp getOSCNotice2:operation.responseString];
             
-            Software *s = [Tool readStrSoftwareDetail:operation.responseString];
+            Software *s = [ToolHelp readStrSoftwareDetail:operation.responseString];
             if (s == nil) {
-                [Tool ToastNotification:@"加载失败" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"加载失败" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             [self loadData:s];
             
             if ([Config Instance].isNetworkRunning) {
-                [Tool saveSoftware:self.softwareName andString:operation.responseString];
+                [ToolHelp saveSoftware:self.softwareName andString:operation.responseString];
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             [hud hide:YES];
             if ([Config Instance].isNetworkRunning) {
-                [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
             }
             
         }];
     }
     else
     {
-        NSString *value = [Tool getSoftware:self.softwareName];
+        NSString *value = [ToolHelp getSoftware:self.softwareName];
         if (value) {
-            Software *s = [Tool readStrSoftwareDetail:value];
+            Software *s = [ToolHelp readStrSoftwareDetail:value];
             [self loadData:s];
         }
         else {
-            [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+            [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
         }
     }
 }
@@ -78,7 +78,7 @@
     BOOL isFav = [btn.title isEqualToString:@"收藏此软件"];
 
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:isFav ? @"正在添加收藏":@"正在删除收藏" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:isFav ? @"正在添加收藏":@"正在删除收藏" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient]getPath:isFav?api_favorite_add:api_favorite_delete 
                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
@@ -86,11 +86,11 @@
                                         @"1",@"type", nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                 
                                 [hud hide:YES];
-                                [Tool getOSCNotice2:operation.responseString];
+                                [ToolHelp getOSCNotice2:operation.responseString];
                                 
-                                ApiError *error = [Tool getApiError2:operation.responseString];
+                                ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                 if (error == nil) {
-                                    [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                    [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                     return;
                                 }
                                 switch (error.errorCode) 
@@ -104,7 +104,7 @@
                                     case -2:
                                     case -1:
                                     {
-                                        [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                     }
                                         break;
                                 }
@@ -112,12 +112,12 @@
                                 
                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                 [hud hide:YES];
-                                [Tool ToastNotification:@"添加收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
+                                [ToolHelp ToastNotification:@"添加收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
                             }];
 }
 - (void)viewDidUnload
 {
-    [Tool ReleaseWebView:self.webView];
+    [ToolHelp ReleaseWebView:self.webView];
     [self setWebView:nil];
     [super viewDidUnload];
 }
@@ -134,7 +134,7 @@
     
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'><img src='%@' width='34' height='34'/>%@</div><hr/><div id='oschina_body'>%@</div><div>%@</div>%@%@</body>",HTML_Style,s.logo,str_title,s.body,tail, [self getButtonString:s.homePage andDocument:s.document andDownload:s.download],HTML_Bottom];
     
-    NSString *result = [Tool getHTMLString:html];
+    NSString *result = [ToolHelp getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
 }
 - (void)refreshFavorite:(Software *)s
@@ -162,7 +162,7 @@
 #pragma 浏览器链接处理
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    [Tool analysis:[request.URL absoluteString] andNavController:self.navigationController];
+    [ToolHelp analysis:[request.URL absoluteString] andNavController:self.navigationController];
     if ([request.URL.absoluteString isEqualToString:@"about:blank"]) 
     {
         return YES;

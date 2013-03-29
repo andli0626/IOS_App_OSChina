@@ -34,7 +34,7 @@
     }
     [_refreshHeaderView refreshLastUpdatedDate];
     
-    self.tableMsgs.backgroundColor = [Tool getBackgroundColor];
+    self.tableMsgs.backgroundColor = [ToolHelp getBackgroundColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick object:nil];
 }
@@ -105,7 +105,7 @@
                                     if (!noRefresh) {
                                         [self clear];
                                     }
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     isLoading = NO;
                                     NSString *response = operation.responseString;
                                     @try {
@@ -143,9 +143,9 @@
                                         TBXMLElement *content = [TBXML childElementNamed:@"content" parentElement:first];
                                         TBXMLElement *messageCount = [TBXML childElementNamed:@"messageCount" parentElement:first];
                                         TBXMLElement *pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
-                                        Message *m = [[Message alloc] initWithParameter:[[TBXML textForElement:_id] intValue] andSender:[TBXML textForElement:sender] andSenderID:[[TBXML textForElement:senderID] intValue] andContent:[TBXML textForElement:content] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andFriendid:[[TBXML textForElement:friendid] intValue] andFriendName:[TBXML textForElement:friendName] andCount:[[TBXML textForElement:messageCount] intValue]];
+                                        Message *m = [[Message alloc] initWithParameter:[[TBXML textForElement:_id] intValue] andSender:[TBXML textForElement:sender] andSenderID:[[TBXML textForElement:senderID] intValue] andContent:[TBXML textForElement:content] andFromNowOn:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andFriendid:[[TBXML textForElement:friendid] intValue] andFriendName:[TBXML textForElement:friendName] andCount:[[TBXML textForElement:messageCount] intValue]];
                                         int count = 0;
-                                        if (![Tool isRepeatMessage: msgs andMessage:m]) {
+                                        if (![ToolHelp isRepeatMessage: msgs andMessage:m]) {
                                             [newMsgs addObject:m];
                                             count = 1;
                                         }
@@ -163,8 +163,8 @@
                                                 content = [TBXML childElementNamed:@"content" parentElement:first];
                                                 messageCount = [TBXML childElementNamed:@"messageCount" parentElement:first];
                                                 pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
-                                                m = [[Message alloc] initWithParameter:[[TBXML textForElement:_id] intValue] andSender:[TBXML textForElement:sender] andSenderID:[[TBXML textForElement:senderID] intValue] andContent:[TBXML textForElement:content] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andFriendid:[[TBXML textForElement:friendid] intValue] andFriendName:[TBXML textForElement:friendName] andCount:[[TBXML textForElement:messageCount] intValue]];
-                                                if (![Tool isRepeatMessage: msgs andMessage:m]) {
+                                                m = [[Message alloc] initWithParameter:[[TBXML textForElement:_id] intValue] andSender:[TBXML textForElement:sender] andSenderID:[[TBXML textForElement:senderID] intValue] andContent:[TBXML textForElement:content] andFromNowOn:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andFriendid:[[TBXML textForElement:friendid] intValue] andFriendName:[TBXML textForElement:friendName] andCount:[[TBXML textForElement:messageCount] intValue]];
+                                                if (![ToolHelp isRepeatMessage: msgs andMessage:m]) {
                                                     [newMsgs addObject:m];
                                                     count++;
                                                 }
@@ -200,7 +200,7 @@
                                         return;
                                     }
                                     if ([Config Instance].isNetworkRunning) {
-                                        [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                                     }
 
                                 }];
@@ -230,18 +230,18 @@
     Message *m = [msgs objectAtIndex:[path row]];
 
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在删除" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在删除" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient] getPath:api_message_delete parameters:
                                 [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", m.friendid],@"friendid",
                                  [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
                                  nil]
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     [hud hide:YES];
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
 
-                                    ApiError *error = [Tool getApiError2:operation.responseString];
+                                    ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                     if (error == nil) {
-                                        [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                         return ;
                                     }
                                     switch (error.errorCode) {
@@ -254,14 +254,14 @@
                                         case -2:
                                         case -1:
                                         {
-                                            [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                         }
                                             break;
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [hud hide:YES];
-                                    [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                    [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                 }];
 } 
 #pragma TableView处理
@@ -285,7 +285,7 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -371,7 +371,7 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        [Tool pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
+        [ToolHelp pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

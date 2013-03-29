@@ -8,6 +8,7 @@
 
 #import "AFOSCClient.h"
 #import "AFXMLRequestOperation.h"
+#import "ToolHelp.h"
 
 //static NSString * const kAFTwitterAPIBaseURLString = @"http://www.oschina.net/action/api/";
 //static NSString * const kAFUrl = @"http://"
@@ -25,7 +26,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedClient = [[AFOSCClient alloc] initWithBaseURL:[NSURL URLWithString:kAFUrl]];
-        [_sharedClient setDefaultHeader:@"User-Agent" value:[NSString stringWithFormat:@"%@/%@", [Tool getOSVersion], [Config Instance].getIOSGuid]];
+        [_sharedClient setDefaultHeader:@"User-Agent" value:[NSString stringWithFormat:@"%@/%@", [ToolHelp getOSVersion], [Config Instance].getIOSGuid]];
     });
     
     return _sharedClient;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SinglePostDetail.h"
 #import "Notification_CommentCount.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "PubMessage.h"
 
 @interface SinglePost : UIViewController<UIWebViewDelegate,UIActionSheetDelegate>

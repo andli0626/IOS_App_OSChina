@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsDetail.h"
+#import "ZongHeDetailView.h"
 #import "PostDetail.h"
 #import "Activity.h"
 //#import "ColorActiveCell.h"

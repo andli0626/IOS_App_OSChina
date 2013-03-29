@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BlogUnit : NSObject
+@interface BlogUnitModel : NSObject
 
 @property int _id;
 @property (copy,nonatomic) NSString * url;

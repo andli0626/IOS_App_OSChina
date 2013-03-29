@@ -10,7 +10,7 @@
 //#import "OAuthEngine.h"
 //#import "WeiboClient.h"
 //#import "OAuthController.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ShareObject.h"
 #import "UITap.h"
 

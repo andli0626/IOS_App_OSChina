@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 
 @interface Tweet : NSObject
 

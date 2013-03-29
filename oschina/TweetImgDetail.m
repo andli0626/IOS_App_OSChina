@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [Tool clearWebViewBackground:webView];
+    [ToolHelp clearWebViewBackground:webView];
     
     NSString *img = [NSString stringWithFormat:@"<div style='margin:auto;width:640px;'><img width='640' style='vertical-align:middle' src='%@'/></div>", self.imgHref];
     [self.webView loadHTMLString:img baseURL:nil];
@@ -34,7 +34,7 @@
 
 - (void)viewDidUnload
 {
-    [Tool ReleaseWebView:self.webView];
+    [ToolHelp ReleaseWebView:self.webView];
     [self setWebView:nil];
     [self setToolBar:nil];
     [super viewDidUnload];

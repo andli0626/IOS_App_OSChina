@@ -47,7 +47,7 @@
     t.imgBig = nimgBig;
     t.appClient = nappClient;
     UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
-    t.height = [Tool getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:t.tweet];
+    t.height = [ToolHelp getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:t.tweet];
     return t;
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "Notification_CommentCount.h"
 #import "TweetImgDetail.h"
 

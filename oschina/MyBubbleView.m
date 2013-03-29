@@ -52,7 +52,7 @@
     NSString *url = [NSString stringWithFormat:@"%@?catalog=4&id=%d&pageIndex=%d&pageSize=20", api_comment_list, self.friendID, pageIndex];
     
     MBProgressHUD * hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在加载" andView:self.view andHUD:hud];
     
     [[AFOSCClient sharedClient] getPath:url parameters:nil
      
@@ -61,12 +61,12 @@
                                     
                                     isLoading = NO;
                                     NSString *response = operation.responseString;  
-                                    [Tool getOSCNotice2:response];
+                                    [ToolHelp getOSCNotice2:response];
                                     
                                     @try {
                                         
                                         TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
-                                        int count = [Tool isListOver2:operation.responseString];
+                                        int count = [ToolHelp isListOver2:operation.responseString];
                                         allCount += count;
                                         if (count < 20) {
                                             isLoadOver = YES;
@@ -91,7 +91,7 @@
                                         
                                         Comment *c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[TBXML textForElement:pubDate] andReplies:Nil andRefers:Nil andAppClient:appclient == nil ? 1 : [TBXML textForElement:appclient].intValue];
                                         //判断是否
-                                        if (![Tool isRepeatComment: comments andComment:c]) {
+                                        if (![ToolHelp isRepeatComment: comments andComment:c]) {
                                             [newComments addObject:c];
                                         }
                                         
@@ -107,7 +107,7 @@
                                                 appclient = nil;
                                                 appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
                                                 c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[TBXML textForElement:pubDate] andReplies:Nil andRefers:Nil andAppClient:appclient == nil ? 1 :[TBXML textForElement:appclient].intValue];
-                                                if (![Tool isRepeatComment:  comments andComment:c]) {
+                                                if (![ToolHelp isRepeatComment:  comments andComment:c]) {
                                                     [newComments addObject:c];
                                                 }
                                             }
@@ -148,7 +148,7 @@
                                     NSLog(@"聊天气泡列表获取出错");
                                     isLoading = NO;
                                     if ([Config Instance].isNetworkRunning) {
-                                        [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                                     }
                                 }];                                                  
     isLoading = YES;
@@ -189,7 +189,7 @@
             lblTime.textColor = [UIColor lightGrayColor];
             lblTime.textAlignment = UITextAlignmentCenter;
             lblTime.backgroundColor = [UIColor clearColor];
-            lblTime.text = [Tool intervalSinceNow:c.pubDate];
+            lblTime.text = [ToolHelp intervalSinceNow:c.pubDate];
             [cell.contentView addSubview:lblTime];
             ChatPopView *p;
             if (c.authorid == [Config Instance].getUID) {

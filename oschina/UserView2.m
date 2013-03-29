@@ -63,18 +63,18 @@
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
                                     self.tableInfo.hidden = NO;
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     
                                     @try {
                                         TBXML *xml = [[TBXML alloc] initWithXMLString:operation.responseString error:nil];
                                         TBXMLElement *root = xml.rootXMLElement;
                                         if (root == nil) {
-                                            [Tool ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                                             return;
                                         }
                                         TBXMLElement *user = [TBXML childElementNamed:@"user" parentElement:root];
                                         if (user == nil) {
-                                            [Tool ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                                             return;
                                         }
                                         TBXMLElement *relation = [TBXML childElementNamed:@"relation" parentElement:user];
@@ -91,7 +91,7 @@
                                         TBXMLElement *latestoneline = [TBXML childElementNamed:@"latestonline" parentElement:user];
                                         
                                         SettingModel *m1 = [infos objectAtIndex:0];
-                                        m1.title2 = [Tool intervalSinceNow:[TBXML textForElement:latestoneline]];
+                                        m1.title2 = [ToolHelp intervalSinceNow:[TBXML textForElement:latestoneline]];
                                         
                                         SettingModel *m2 = [infos objectAtIndex:1];
                                         m2.title2 = [TBXML textForElement:gender];
@@ -149,14 +149,14 @@
                                     }
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                    [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                 }];
 }
 
 -(void)clickRelation:(id)sender
 {
     if ([Config Instance].isCookie == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@"请您先登录"];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:@"请您先登录"];
         return;
     }
     //根据现在关系决定用户能做的操作 
@@ -178,18 +178,18 @@
     }
     NSString *url = [NSString stringWithFormat:@"%@?uid=%d&hisuid=%d&newrelation=%d",api_user_updaterelation,[Config Instance].getUID,hisUID,newrelation];
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在载入信息" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在载入信息" andView:self.view andHUD:hud];
     [[AFOSCClient sharedClient] getPath:url parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     
                                     [hud hide:YES];
                                     //重新刷新
-                                    ApiError *error = [Tool getApiError2:operation.responseString];
+                                    ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                     if (error == nil) {
-                                        [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                         return ;
                                     }
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     switch (error.errorCode) {
                                         case 1:
                                         {
@@ -200,7 +200,7 @@
                                         case -2:
                                         case -1:
                                         {
-                                            [Tool ToastNotification:@"操作失败" andView:self.view  andLoading:self andIsBottom:NO];
+                                            [ToolHelp ToastNotification:@"操作失败" andView:self.view  andLoading:self andIsBottom:NO];
                                             return;
                                         }
                                             break;
@@ -208,12 +208,12 @@
                                     
                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [hud hide:YES];
-                                    [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                    [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                 }];
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
+    [ToolHelp processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:self];
 }
 - (void)viewDidUnload
 {
@@ -228,7 +228,7 @@
         return;
     }
     if ([Config Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表动弹"];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:@"请先登录后再发表动弹"];
         return;
     }
     PubTweet * pubTweet = [[PubTweet alloc] init];
@@ -239,7 +239,7 @@
 
 - (IBAction)click_PubMesssge:(id)sender {
     if ([Config Instance].isCookie == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:@"请先登录再发留言"];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:@"请先登录再发留言"];
         return;
     }
     PubMessage *pubMessage = [[PubMessage alloc] init];

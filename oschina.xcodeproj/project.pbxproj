@@ -12,7 +12,7 @@
 		DA1763F5157C6AA400C7AE95 /* RTActiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1763F3157C6AA400C7AE95 /* RTActiveCell.xib */; };
 		DA1763F9157C6BCF00C7AE95 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1763F8157C6BCF00C7AE95 /* RTLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA1B49741562568B0094BE26 /* MyThread.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1B49731562568B0094BE26 /* MyThread.m */; };
-		DA203C0D15A2AF9F0069695A /* BlogUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = DA203C0C15A2AF9F0069695A /* BlogUnit.m */; };
+		DA203C0D15A2AF9F0069695A /* BlogUnitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA203C0C15A2AF9F0069695A /* BlogUnitModel.m */; };
 		DA203C1115A2C9C80069695A /* UserBlogsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA203C0F15A2C9C80069695A /* UserBlogsView.m */; };
 		DA203C1215A2C9C80069695A /* UserBlogsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA203C1015A2C9C80069695A /* UserBlogsView.xib */; };
 		DA282A8D155CD284002D773A /* FriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA282A8B155CD284002D773A /* FriendsView.m */; };
@@ -77,8 +77,8 @@
 		DA81A47E15F06273007CB958 /* SSPhotoCropperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA81A47615F06273007CB958 /* SSPhotoCropperViewController.xib */; };
 		DA820639150DA2E20065AB7E /* ProfileBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA820637150DA2E10065AB7E /* ProfileBase.m */; };
 		DA82063A150DA2E20065AB7E /* ProfileBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA820638150DA2E10065AB7E /* ProfileBase.xib */; };
-		DA820647150DBCA90065AB7E /* NewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = DA820645150DBCA90065AB7E /* NewsDetail.m */; };
-		DA820648150DBCA90065AB7E /* NewsDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA820646150DBCA90065AB7E /* NewsDetail.xib */; };
+		DA820647150DBCA90065AB7E /* ZongHeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA820645150DBCA90065AB7E /* ZongHeDetailView.m */; };
+		DA820648150DBCA90065AB7E /* ZongHeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA820646150DBCA90065AB7E /* ZongHeDetailView.xib */; };
 		DA82064C150DBEC40065AB7E /* ZongHe_MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */; };
 		DA82064D150DBEC40065AB7E /* ZongHe_MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */; };
 		DA820660150DDAE70065AB7E /* TweetBase2.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82065E150DDAE70065AB7E /* TweetBase2.m */; };
@@ -321,9 +321,9 @@
 		DACC68EB14FF87B5006F7B6A /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC68E114FF87B4006F7B6A /* TBXML+Compression.m */; };
 		DACC68EC14FF87B5006F7B6A /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC68E214FF87B4006F7B6A /* TBXML+HTTP.m */; };
 		DACC68ED14FF87B5006F7B6A /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = DACC68E314FF87B4006F7B6A /* TBXML.m */; };
-		DACEB0A4150EEB20001D4A24 /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = DACEB0A3150EEB20001D4A24 /* Tool.m */; };
-		DACEB0A9150EF1FD001D4A24 /* MessageSystemView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACEB0A7150EF1FD001D4A24 /* MessageSystemView.m */; };
-		DACEB0AA150EF1FD001D4A24 /* MessageSystemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACEB0A8150EF1FD001D4A24 /* MessageSystemView.xib */; };
+		DACEB0A4150EEB20001D4A24 /* ToolHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = DACEB0A3150EEB20001D4A24 /* ToolHelp.m */; };
+		DACEB0A9150EF1FD001D4A24 /* CommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DACEB0A7150EF1FD001D4A24 /* CommentsView.m */; };
+		DACEB0AA150EF1FD001D4A24 /* CommentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACEB0A8150EF1FD001D4A24 /* CommentsView.xib */; };
 		DACEB0AE150EF2A5001D4A24 /* MessageSystemPub.m in Sources */ = {isa = PBXBuildFile; fileRef = DACEB0AC150EF2A5001D4A24 /* MessageSystemPub.m */; };
 		DACEB0AF150EF2A5001D4A24 /* MessageSystemPub.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACEB0AD150EF2A5001D4A24 /* MessageSystemPub.xib */; };
 		DACF2CBC1558A900008D485C /* LoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2CBA1558A900008D485C /* LoadingCell.m */; };
@@ -372,8 +372,8 @@
 		DA1763F8157C6BCF00C7AE95 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		DA1B49721562568B0094BE26 /* MyThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyThread.h; sourceTree = "<group>"; };
 		DA1B49731562568B0094BE26 /* MyThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyThread.m; sourceTree = "<group>"; };
-		DA203C0B15A2AF9F0069695A /* BlogUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogUnit.h; sourceTree = "<group>"; };
-		DA203C0C15A2AF9F0069695A /* BlogUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogUnit.m; sourceTree = "<group>"; };
+		DA203C0B15A2AF9F0069695A /* BlogUnitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogUnitModel.h; sourceTree = "<group>"; };
+		DA203C0C15A2AF9F0069695A /* BlogUnitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogUnitModel.m; sourceTree = "<group>"; };
 		DA203C0E15A2C9C80069695A /* UserBlogsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBlogsView.h; sourceTree = "<group>"; };
 		DA203C0F15A2C9C80069695A /* UserBlogsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBlogsView.m; sourceTree = "<group>"; };
 		DA203C1015A2C9C80069695A /* UserBlogsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBlogsView.xib; sourceTree = "<group>"; };
@@ -463,9 +463,9 @@
 		DA820636150DA2E10065AB7E /* ProfileBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileBase.h; sourceTree = "<group>"; };
 		DA820637150DA2E10065AB7E /* ProfileBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileBase.m; sourceTree = "<group>"; };
 		DA820638150DA2E10065AB7E /* ProfileBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileBase.xib; sourceTree = "<group>"; };
-		DA820644150DBCA90065AB7E /* NewsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetail.h; sourceTree = "<group>"; };
-		DA820645150DBCA90065AB7E /* NewsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetail.m; sourceTree = "<group>"; };
-		DA820646150DBCA90065AB7E /* NewsDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetail.xib; sourceTree = "<group>"; };
+		DA820644150DBCA90065AB7E /* ZongHeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHeDetailView.h; sourceTree = "<group>"; };
+		DA820645150DBCA90065AB7E /* ZongHeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHeDetailView.m; sourceTree = "<group>"; };
+		DA820646150DBCA90065AB7E /* ZongHeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHeDetailView.xib; sourceTree = "<group>"; };
 		DA820649150DBEC30065AB7E /* ZongHe_MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHe_MainView.h; sourceTree = "<group>"; };
 		DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHe_MainView.m; sourceTree = "<group>"; };
 		DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHe_MainView.xib; sourceTree = "<group>"; };
@@ -796,11 +796,11 @@
 		DACC68E714FF87B4006F7B6A /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		DACC68E914FF87B4006F7B6A /* TBXML-iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		DACC68EA14FF87B4006F7B6A /* TBXML-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML-Prefix.pch"; sourceTree = "<group>"; };
-		DACEB0A2150EEB20001D4A24 /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
-		DACEB0A3150EEB20001D4A24 /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
-		DACEB0A6150EF1FD001D4A24 /* MessageSystemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSystemView.h; sourceTree = "<group>"; };
-		DACEB0A7150EF1FD001D4A24 /* MessageSystemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSystemView.m; sourceTree = "<group>"; };
-		DACEB0A8150EF1FD001D4A24 /* MessageSystemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageSystemView.xib; sourceTree = "<group>"; };
+		DACEB0A2150EEB20001D4A24 /* ToolHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHelp.h; sourceTree = "<group>"; };
+		DACEB0A3150EEB20001D4A24 /* ToolHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHelp.m; sourceTree = "<group>"; };
+		DACEB0A6150EF1FD001D4A24 /* CommentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsView.h; sourceTree = "<group>"; };
+		DACEB0A7150EF1FD001D4A24 /* CommentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsView.m; sourceTree = "<group>"; };
+		DACEB0A8150EF1FD001D4A24 /* CommentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsView.xib; sourceTree = "<group>"; };
 		DACEB0AB150EF2A5001D4A24 /* MessageSystemPub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSystemPub.h; sourceTree = "<group>"; };
 		DACEB0AC150EF2A5001D4A24 /* MessageSystemPub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSystemPub.m; sourceTree = "<group>"; };
 		DACEB0AD150EF2A5001D4A24 /* MessageSystemPub.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageSystemPub.xib; sourceTree = "<group>"; };
@@ -1065,8 +1065,8 @@
 				DAC5D7BD1519D92A0041AE9A /* EGORefreshTableHeaderView.m */,
 				DABA75BC15045BB800521596 /* DataSingleton.h */,
 				DABA75BD15045BB800521596 /* DataSingleton.m */,
-				DACEB0A2150EEB20001D4A24 /* Tool.h */,
-				DACEB0A3150EEB20001D4A24 /* Tool.m */,
+				DACEB0A2150EEB20001D4A24 /* ToolHelp.h */,
+				DACEB0A3150EEB20001D4A24 /* ToolHelp.m */,
 				DAB9A72815205BCD00EBB20C /* UITap.h */,
 				DAB9A72915205BCD00EBB20C /* UITap.m */,
 				DACF2CB91558A900008D485C /* LoadingCell.h */,
@@ -1418,9 +1418,9 @@
 		DACC3BAC1509F21900E378D2 /* tab */ = {
 			isa = PBXGroup;
 			children = (
-				DA820644150DBCA90065AB7E /* NewsDetail.h */,
-				DA820645150DBCA90065AB7E /* NewsDetail.m */,
-				DA820646150DBCA90065AB7E /* NewsDetail.xib */,
+				DA820644150DBCA90065AB7E /* ZongHeDetailView.h */,
+				DA820645150DBCA90065AB7E /* ZongHeDetailView.m */,
+				DA820646150DBCA90065AB7E /* ZongHeDetailView.xib */,
 				DAD5C86E150E01DC000C2DA4 /* ShareView.h */,
 				DAD5C86F150E01DC000C2DA4 /* ShareView.m */,
 				DAD5C870150E01DC000C2DA4 /* ShareView.xib */,
@@ -1614,8 +1614,8 @@
 				DAE4A0FA155A0CAB006AB969 /* SoftwareCatalog.m */,
 				DAE4A0FC155A0DAE006AB969 /* SoftwareUnit.h */,
 				DAE4A0FD155A0DAE006AB969 /* SoftwareUnit.m */,
-				DA203C0B15A2AF9F0069695A /* BlogUnit.h */,
-				DA203C0C15A2AF9F0069695A /* BlogUnit.m */,
+				DA203C0B15A2AF9F0069695A /* BlogUnitModel.h */,
+				DA203C0C15A2AF9F0069695A /* BlogUnitModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1703,9 +1703,9 @@
 		DACEB0B0150EF4BC001D4A24 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				DACEB0A6150EF1FD001D4A24 /* MessageSystemView.h */,
-				DACEB0A7150EF1FD001D4A24 /* MessageSystemView.m */,
-				DACEB0A8150EF1FD001D4A24 /* MessageSystemView.xib */,
+				DACEB0A6150EF1FD001D4A24 /* CommentsView.h */,
+				DACEB0A7150EF1FD001D4A24 /* CommentsView.m */,
+				DACEB0A8150EF1FD001D4A24 /* CommentsView.xib */,
 				DACEB0AB150EF2A5001D4A24 /* MessageSystemPub.h */,
 				DACEB0AC150EF2A5001D4A24 /* MessageSystemPub.m */,
 				DACEB0AD150EF2A5001D4A24 /* MessageSystemPub.xib */,
@@ -1838,11 +1838,11 @@
 				DAB2C95715089F2400DA5B94 /* ActivesView.xib in Resources */,
 				DAB2C95C1508A16E00DA5B94 /* MessageView.xib in Resources */,
 				DA82063A150DA2E20065AB7E /* ProfileBase.xib in Resources */,
-				DA820648150DBCA90065AB7E /* NewsDetail.xib in Resources */,
+				DA820648150DBCA90065AB7E /* ZongHeDetailView.xib in Resources */,
 				DA82064D150DBEC40065AB7E /* ZongHe_MainView.xib in Resources */,
 				DA820661150DDAE70065AB7E /* TweetBase2.xib in Resources */,
 				DAD5C872150E01DC000C2DA4 /* ShareView.xib in Resources */,
-				DACEB0AA150EF1FD001D4A24 /* MessageSystemView.xib in Resources */,
+				DACEB0AA150EF1FD001D4A24 /* CommentsView.xib in Resources */,
 				DACEB0AF150EF2A5001D4A24 /* MessageSystemPub.xib in Resources */,
 				DA3FF886150F218C009A5C86 /* ZongHeTableCell.xib in Resources */,
 				DA3FF88C150F3292009A5C86 /* MessageCell.xib in Resources */,
@@ -2084,12 +2084,12 @@
 				DACC3B961509B1A100E378D2 /* Activity.m in Sources */,
 				DACC3B9E1509DD0B00E378D2 /* ProfileModel.m in Sources */,
 				DA820639150DA2E20065AB7E /* ProfileBase.m in Sources */,
-				DA820647150DBCA90065AB7E /* NewsDetail.m in Sources */,
+				DA820647150DBCA90065AB7E /* ZongHeDetailView.m in Sources */,
 				DA82064C150DBEC40065AB7E /* ZongHe_MainView.m in Sources */,
 				DA820660150DDAE70065AB7E /* TweetBase2.m in Sources */,
 				DAD5C871150E01DC000C2DA4 /* ShareView.m in Sources */,
-				DACEB0A4150EEB20001D4A24 /* Tool.m in Sources */,
-				DACEB0A9150EF1FD001D4A24 /* MessageSystemView.m in Sources */,
+				DACEB0A4150EEB20001D4A24 /* ToolHelp.m in Sources */,
+				DACEB0A9150EF1FD001D4A24 /* CommentsView.m in Sources */,
 				DACEB0AE150EF2A5001D4A24 /* MessageSystemPub.m in Sources */,
 				DA3FF885150F218C009A5C86 /* ZongHeTableCell.m in Sources */,
 				DA3FF88B150F3292009A5C86 /* MessageCell.m in Sources */,
@@ -2146,7 +2146,7 @@
 				DAB92D47156B755200F31954 /* MyPortraitCell.m in Sources */,
 				DA1763F4157C6AA400C7AE95 /* RTActiveCell.m in Sources */,
 				DA1763F9157C6BCF00C7AE95 /* RTLabel.m in Sources */,
-				DA203C0D15A2AF9F0069695A /* BlogUnit.m in Sources */,
+				DA203C0D15A2AF9F0069695A /* BlogUnitModel.m in Sources */,
 				DA203C1115A2C9C80069695A /* UserBlogsView.m in Sources */,
 				DAB553B315A43A8700DC46A4 /* UserActiveView.m in Sources */,
 				DAD47B8815A53C0E00A92958 /* UserView2.m in Sources */,

@@ -102,7 +102,7 @@
         case 2:
         {
             if ([Config Instance].isCookie == NO) {
-                [Tool ToastNotification:@"错误 您还没有登录,注销无效" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"错误 您还没有登录,注销无效" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
 
@@ -114,7 +114,7 @@
             [self refresh];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"login" object:@"0"];
-            [Tool ToastNotification:@"注销成功" andView:self.view andLoading:NO andIsBottom:NO];
+            [ToolHelp ToastNotification:@"注销成功" andView:self.view andLoading:NO andIsBottom:NO];
         }
             break;
         case 3:
@@ -207,12 +207,12 @@
             TBXML *xml = [[TBXML alloc] initWithXMLString:operation.responseString error:nil];
             TBXMLElement *root = xml.rootXMLElement;
             if (root == nil) {
-                [Tool ToastNotification:@"获取版本信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"获取版本信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             TBXMLElement *update = [TBXML childElementNamed:@"update" parentElement:root];
             if (update == nil) {
-                [Tool ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"获取个人信息错误" andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             TBXMLElement *ios = [TBXML childElementNamed:@"ios" parentElement:update];
@@ -236,7 +236,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
     }];
     
 }

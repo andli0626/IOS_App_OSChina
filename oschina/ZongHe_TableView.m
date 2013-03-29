@@ -31,7 +31,7 @@
     
     dataArray = [[NSMutableArray alloc] initWithCapacity:20];
     [self reload:YES];
-    self.mTableView.backgroundColor = [Tool getBackgroundColor];
+    self.mTableView.backgroundColor = [ToolHelp getBackgroundColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshed:)
@@ -98,65 +98,65 @@
                 url = [NSString stringWithFormat:@"%@?type=recommend&pageIndex=%d&pageSize=%d", api_blog_list, pageIndex, 20];
                 break;
         }
-
-        [[AFOSCClient sharedClient]getPath:url parameters:Nil 
-            
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-               
-            [Tool getOSCNotice2:operation.responseString];
-            isLoading = NO;
-            if (!noRefresh) {
-                [self clear];
-            }
-
-            @try {
-                NSMutableArray *newNews = self.catalog <= 1 ?
-                
-                [Tool readStrNewsArray:operation.responseString andOld: dataArray]:
-                [Tool readStrUserBlogsArray:operation.responseString andOld: dataArray];
-                int count = [Tool isListOver2:operation.responseString];
-                allCount += count;
-                if (count < 20)
-                {
-                    isLoadOver = YES;
-                }
-                [dataArray addObjectsFromArray:newNews];
-                [self.mTableView reloadData];
-                [self doneLoadingTableViewData];
-                
-                //如果是第一页 则缓存下来
-                if (dataArray.count <= 20) {
-                    [Tool saveCache:5 andID:self.catalog andString:operation.responseString];
-                }
-            }
-            @catch (NSException *exception) {
-                [NdUncaughtExceptionHandler TakeException:exception];
-            }
-            @finally {
-                [self doneLoadingTableViewData];
-            }
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"新闻列表获取出错");
-            //如果是刷新
-            [self doneLoadingTableViewData];
-            
-            if ([Config Instance].isNetworkRunning == NO) {
-                return;
-            }
-            isLoading = NO;
-            if ([Config Instance].isNetworkRunning) {
-                [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
-            }
-        }];
+        
+        [[AFOSCClient sharedClient]getPath:url parameters:Nil
+         
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       
+                                       [ToolHelp getOSCNotice2:operation.responseString];
+                                       isLoading = NO;
+                                       if (!noRefresh) {
+                                           [self clear];
+                                       }
+                                       
+                                       @try {
+                                           NSMutableArray *newNews = self.catalog <= 1 ?
+                                           
+                                           [ToolHelp readStrNewsArray:operation.responseString andOld: dataArray]:
+                                           [ToolHelp readStrUserBlogsArray:operation.responseString andOld: dataArray];
+                                           int count = [ToolHelp isListOver2:operation.responseString];
+                                           allCount += count;
+                                           if (count < 20)
+                                           {
+                                               isLoadOver = YES;
+                                           }
+                                           [dataArray addObjectsFromArray:newNews];
+                                           [self.mTableView reloadData];
+                                           [self doneLoadingTableViewData];
+                                           
+                                           //如果是第一页 则缓存下来
+                                           if (dataArray.count <= 20) {
+                                               [ToolHelp saveCache:5 andID:self.catalog andString:operation.responseString];
+                                           }
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           [self doneLoadingTableViewData];
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       NSLog(@"新闻列表获取出错");
+                                       //如果是刷新
+                                       [self doneLoadingTableViewData];
+                                       
+                                       if ([Config Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       isLoading = NO;
+                                       if ([Config Instance].isNetworkRunning) {
+                                           [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                       }
+                                   }];
         isLoading = YES;
         [self.mTableView reloadData];
     }
     //如果没有网络连接
     else
     {
-        NSString *value = [Tool getCache:5 andID:self.catalog];
+        NSString *value = [ToolHelp getCache:5 andID:self.catalog];
         if (value) {
-            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:dataArray];
+            NSMutableArray *newNews = [ToolHelp readStrNewsArray:value andOld:dataArray];
             [self.mTableView reloadData];
             isLoadOver = YES;
             [dataArray addObjectsFromArray:newNews];
@@ -173,7 +173,7 @@
         if (isLoadOver) {
             return dataArray.count == 0 ? 1 : dataArray.count;
         }
-        else 
+        else
             return dataArray.count + 1;
     }
     else
@@ -185,12 +185,12 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([dataArray count] > 0) {
-        if ([indexPath row] < [dataArray count]) 
+        if ([indexPath row] < [dataArray count])
         {
             ZongHeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
             if (!cell) {
@@ -210,7 +210,7 @@
             }
             else
             {
-                BlogUnit *b = [dataArray objectAtIndex:indexPath.row];
+                BlogUnitModel *b = [dataArray objectAtIndex:indexPath.row];
                 cell.lblTitle.text = b.title;
                 cell.lblAuthor.text = [NSString stringWithFormat:@"%@ %@ %@ (%d评)", b.authorName,b.documentType==1?@"原创":@"转载", b.pubDate, b.commentCount];
             }
@@ -219,15 +219,25 @@
         }
         else
         {
-            return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部新闻" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
+            return [[DataSingleton Instance] getLoadMoreCell:tableView
+                                               andIsLoadOver:isLoadOver
+                                           andLoadOverString:@"已经加载全部新闻"
+                                            andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
         }
     }
     else
     {
-        return [[DataSingleton Instance] getLoadMoreCell:tableView andIsLoadOver:isLoadOver andLoadOverString:@"已经加载全部新闻" andLoadingString:(isLoading ? loadingTip : loadNext20Tip) andIsLoading:isLoading];
+        return [[DataSingleton Instance] getLoadMoreCell:tableView
+                                           andIsLoadOver:isLoadOver
+                                       andLoadOverString:@"已经加载全部新闻"
+                                        andLoadingString:(isLoading ? loadingTip : loadNext20Tip)
+                                            andIsLoading:isLoading];
     }
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+//列表点击事件
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
@@ -237,28 +247,34 @@
         }
     }
     else {
-        ZongHe_MainView *newsbaseView = (ZongHe_MainView *)self.parentViewController;
-        self.parentViewController.title = [newsbaseView getSegmentTitle];
+        ZongHe_MainView *mZongHe_MainView = (ZongHe_MainView *)self.parentViewController;
+        self.parentViewController.title = [mZongHe_MainView getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {
-            NewsInfoModel *n = [dataArray objectAtIndex:row];
-            if (n) 
+            NewsInfoModel *newInfo = [dataArray objectAtIndex:row];
+            if (newInfo)
             {
                 
-                if (n.url.length == 0) {
-                    [Tool pushNewsDetail:n andNavController:self.parentViewController.navigationController andIsNextPage:NO];
+                if (newInfo.url.length == 0) {
+                    //跳转到综合详情
+                    [ToolHelp pushNewsDetail:newInfo
+                            andNavController:self.parentViewController.navigationController
+                               andIsNextPage:NO];
                 }
                 else
                 {
-                    [Tool analysis:n.url andNavController:newsbaseView.navigationController];
-                }            
+                    //对URL类型进行判断，跳转到其他页面
+                    [ToolHelp analysis:newInfo.url
+                      andNavController:mZongHe_MainView.navigationController];
+                }
             }
         }
         else
         {
-            BlogUnit *b = [dataArray objectAtIndex:row];
-            if (b) {
-                [Tool analysis:b.url andNavController:newsbaseView.navigationController];
+            BlogUnitModel *blogUnit = [dataArray objectAtIndex:row];
+            if (blogUnit) {
+                [ToolHelp analysis:blogUnit.url
+                  andNavController:mZongHe_MainView.navigationController];
             }
         }
     }
@@ -303,10 +319,10 @@
     }
     //无网络连接则读取缓存
     else {
-        NSString *value = [Tool getCache:5 andID:self.catalog];
+        NSString *value = [ToolHelp getCache:5 andID:self.catalog];
         if (value) 
         {
-            NSMutableArray *newNews = [Tool readStrNewsArray:value andOld:dataArray];
+            NSMutableArray *newNews = [ToolHelp readStrNewsArray:value andOld:dataArray];
             if (newNews == nil) {
                 [self.mTableView reloadData];
             }

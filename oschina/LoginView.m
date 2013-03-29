@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     
-    [Tool clearWebViewBackground:webView];
+    [ToolHelp clearWebViewBackground:webView];
     [self.webView setDelegate:self];
     
     self.navigationItem.title = @"登录";
@@ -40,8 +40,8 @@
     
     UIBarButtonItem *btnLogin = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleBordered target:self action:@selector(click_Login:)];
     self.navigationItem.rightBarButtonItem = btnLogin;
-    self.view.backgroundColor = [Tool getBackgroundColor];
-    self.webView.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
+    self.webView.backgroundColor = [ToolHelp getBackgroundColor];
     
     NSString *html = @"<body style='background-color:#EBEBF3'>1, 您可以在 <a href='http://www.oschina.net'>http://www.oschina.net</a> 上免费注册一个账号用来登陆<p />2, 如果您的账号是使用OpenID的方式注册的，那么建议您在网页上为账号设置密码<p />3, 您可以点击 <a href='http://www.oschina.net/question/12_52232'>这里</a> 了解更多关于手机客户端登录的问题</body>";
     [self.webView loadHTMLString:html baseURL:nil];
@@ -54,12 +54,12 @@
     [self setTxt_Pwd:nil];
     [self setSwitch_Remember:nil];
     [self setWebView:nil];
-    [Tool CancelRequest:request];
+    [ToolHelp CancelRequest:request];
     [super viewDidUnload];
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [Tool CancelRequest:request];
+    [ToolHelp CancelRequest:request];
 }
 - (IBAction)click_Login:(id)sender 
 {    
@@ -76,7 +76,7 @@
     [request startAsynchronous];
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在登录" andView:self.view andHUD:request.hud];
+    [ToolHelp showHUD:@"正在登录" andView:self.view andHUD:request.hud];
 }
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
@@ -89,11 +89,11 @@
     if (request.hud) {
         [request.hud hide:YES];
     }
-    [Tool getOSCNotice:request];
+    [ToolHelp getOSCNotice:request];
     [request setUseCookiePersistence:YES];
-    ApiError *error = [Tool getApiError:request];
+    ApiError *error = [ToolHelp getApiError:request];
     if (error == nil) {
-        [Tool ToastNotification:request.responseString andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:request.responseString andView:self.view andLoading:NO andIsBottom:NO];
     }
     switch (error.errorCode) {
         
@@ -139,7 +139,7 @@
         case 0:
         case -1:
         {
-            [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+            [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
         }
             break;
     }

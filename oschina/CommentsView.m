@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MessageSystemView.h"
+#import "CommentsView.h"
 
-@implementation MessageSystemView
+@implementation CommentsView
 @synthesize tableComments;
 @synthesize pubComments;
 @synthesize imageDownloadsInProgress;
@@ -134,7 +134,7 @@
 {
     //判断是否应该登入  当类型不是新闻的话则强制登录才能评论
     if (self.catalog != 1 && [Config Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:[Tool getCommentLoginNoticeByCatalog:self.catalog]];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:[ToolHelp getCommentLoginNoticeByCatalog:self.catalog]];
         return;
     }
     if ([self.pubTitle isEqualToString:@"给Ta留言"])
@@ -159,7 +159,7 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.parentViewController.navigationController andParent:self];
+    [ToolHelp processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.parentViewController.navigationController andParent:self];
 }
 - (void)reload:(BOOL)noRefresh
 {
@@ -186,13 +186,13 @@
                                     if (!noRefresh) {
                                         [self clear];
                                     }
-                                    [Tool getOSCNotice2:operation.responseString];
+                                    [ToolHelp getOSCNotice2:operation.responseString];
                                     isLoading = NO;
                                     NSString *response = operation.responseString; 
                                     @try {
                                         
                                         TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
-                                        int count = [Tool isListOver2:operation.responseString];
+                                        int count = [ToolHelp isListOver2:operation.responseString];
                                         allCount += count;
                                         if (count < 20) {
                                             isLoadOver = YES;
@@ -215,12 +215,12 @@
                                         TBXMLElement *content = [TBXML childElementNamed:@"content" parentElement:first];
                                         TBXMLElement *pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
                                         TBXMLElement *appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
-                                        NSMutableArray *replies = [Tool getReplies:first];
-                                        NSMutableArray *refers = [Tool getRefers:first];
+                                        NSMutableArray *replies = [ToolHelp getReplies:first];
+                                        NSMutableArray *refers = [ToolHelp getRefers:first];
                                         
-                                        Comment *c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andReplies:replies andRefers:refers andAppClient:appclient == nil ? 1 : [TBXML textForElement:appclient].intValue];
+                                        Comment *c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andReplies:replies andRefers:refers andAppClient:appclient == nil ? 1 : [TBXML textForElement:appclient].intValue];
                                         //判断是否
-                                        if (![Tool isRepeatComment: comments andComment:c]) {
+                                        if (![ToolHelp isRepeatComment: comments andComment:c]) {
                                             [newComments addObject:c];
                                         }
                                         
@@ -234,12 +234,12 @@
                                                 authorid = [TBXML childElementNamed:@"authorid" parentElement:first];
                                                 content = [TBXML childElementNamed:@"content" parentElement:first];
                                                 pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
-                                                replies = [Tool getReplies:first];
-                                                refers = [Tool getRefers:first];
+                                                replies = [ToolHelp getReplies:first];
+                                                refers = [ToolHelp getRefers:first];
                                                 appclient = nil;
                                                 appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
-                                                c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andReplies:replies andRefers:refers andAppClient:appclient == nil ? 1 :[TBXML textForElement:appclient].intValue];
-                                                if (![Tool isRepeatComment:  comments andComment:c]) {
+                                                c = [[Comment alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andImg:[TBXML textForElement:portrait] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorid] intValue] andContent:[TBXML textForElement:content]  andPubDate:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andReplies:replies andRefers:refers andAppClient:appclient == nil ? 1 :[TBXML textForElement:appclient].intValue];
+                                                if (![ToolHelp isRepeatComment:  comments andComment:c]) {
                                                     [newComments addObject:c];
                                                 }
                                             }
@@ -266,7 +266,7 @@
                                     [self doneLoadingTableViewData];
                                     isLoading = NO;
                                     if ([Config Instance].isNetworkRunning) {
-                                        [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
                                     }
                                 }];
     
@@ -300,7 +300,7 @@
         /*
          剩下一个问题就是发表留言后 没有上升到顶部
          */
-        [Tool toTableViewBottom:self.tableComments isBottom:NO];
+        [ToolHelp toTableViewBottom:self.tableComments isBottom:NO];
     }
     //如果是新闻 帖子 或者动弹的
     else 
@@ -321,7 +321,7 @@
             [comments insertObject:newComment atIndex:0];
             [imageDownloadsInProgress removeAllObjects];
             [self.tableComments reloadData];
-            [Tool toTableViewBottom:self.tableComments isBottom:NO];
+            [ToolHelp toTableViewBottom:self.tableComments isBottom:NO];
         }
         //也可能是 问答的某帖子回复 需要被替代
         else 
@@ -365,12 +365,12 @@
     
     //是否为我发表的
     if (self.commentType != 5 && isDisableDelete == NO && c.authorid != [Config Instance].getUID) {
-        [Tool ToastNotification:@"错误 不能删除别人的评论" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"错误 不能删除别人的评论" andView:self.view andLoading:NO andIsBottom:NO];
         return;
     }
     
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在删除" andView:self.view andHUD:hud];
+    [ToolHelp showHUD:@"正在删除" andView:self.view andHUD:hud];
     
     if (commentType != 5) {
         [[AFOSCClient sharedClient] getPath:api_comment_delete
@@ -384,10 +384,10 @@
                                     
                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                         [hud hide:YES];
-                                        [Tool getOSCNotice2:operation.responseString];
-                                        ApiError *error = [Tool getApiError2:operation.responseString];
+                                        [ToolHelp getOSCNotice2:operation.responseString];
+                                        ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                         if (error == nil) {
-                                            [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                             return ;
                                         }
                                         switch (error.errorCode) {
@@ -400,7 +400,7 @@
                                             case -2:
                                             case -1:
                                             {
-                                                [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                                [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                             }
                                                 break;
                                         }
@@ -408,7 +408,7 @@
                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                         
                                         [hud hide:YES];
-                                        [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                         
                                     }];
         
@@ -425,10 +425,10 @@
                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                         
                                         [hud hide:YES];
-                                        [Tool getOSCNotice2:operation.responseString];
-                                        ApiError *error = [Tool getApiError2:operation.responseString];
+                                        [ToolHelp getOSCNotice2:operation.responseString];
+                                        ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                         if (error == nil) {
-                                            [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                            [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                             return ;
                                         }
                                         switch (error.errorCode) {
@@ -441,7 +441,7 @@
                                             case -2:
                                             case -1:
                                             {
-                                                [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                                [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                             }
                                                 break;
                                         }
@@ -449,7 +449,7 @@
                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                         
                                         [hud hide:YES];
-                                        [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                        [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                         
                                     }];
         
@@ -479,7 +479,7 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getColorForCell:indexPath.row];
+    cell.backgroundColor = [ToolHelp getColorForCell:indexPath.row];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -533,11 +533,11 @@
                         }
                     }
                 }
-                cell.lbl_Title.text = [NSString stringWithFormat:@"%@ 发表于%@ %@", m.author, m.pubDate, [Tool getAppClientString:m.appClient]];
+                cell.lbl_Title.text = [NSString stringWithFormat:@"%@ 发表于%@ %@", m.author, m.pubDate, [ToolHelp getAppClientString:m.appClient]];
                 cell.txt_Content.font = [UIFont boldSystemFontOfSize:14.0];
                 cell.txt_Content.text = m.content;
                 
-                UIColor *color = [Tool getColorForCell:row];
+                UIColor *color = [ToolHelp getColorForCell:row];
                 
                 if (self.catalog == 2 && cell.myView == nil) {
                     cell.myView = [[UIView alloc] init];
@@ -551,7 +551,7 @@
                  }
                 
                 if (m.refers && m.refers.count > 0) {
-                    cell.referView = [Tool getReferView:m.refers];
+                    cell.referView = [ToolHelp getReferView:m.refers];
                     [cell addSubview:cell.referView];
                     cell.txt_Content.frame = CGRectMake(40, 14+m.height_reference, 270, 50000);
                 }
@@ -624,7 +624,7 @@
     }
     //如果没登录
     if (indexPath.row < comments.count && self.catalog != 1 && [Config Instance].isLogin == NO) {
-        [Tool noticeLogin:self.view andDelegate:self andTitle:[Tool getCommentLoginNoticeByCatalog:self.catalog]];
+        [ToolHelp noticeLogin:self.view andDelegate:self andTitle:[ToolHelp getCommentLoginNoticeByCatalog:self.catalog]];
         return;
     }
     
@@ -658,7 +658,7 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        [Tool pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
+        [ToolHelp pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
     }
 }
 

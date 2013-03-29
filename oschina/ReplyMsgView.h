@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tool.h"
-#import "MessageSystemView.h"
+#import "ToolHelp.h"
+#import "CommentsView.h"
 #import "Comment.h"
-@class MessageSystemView;
+@class CommentsView;
 
 @interface ReplyMsgView : UIViewController<UIActionSheetDelegate,UIWebViewDelegate,UITextViewDelegate>
 {
@@ -24,7 +24,7 @@
 @property (retain,nonatomic) NSString * btnTitle;
 
 
-@property (strong, nonatomic) MessageSystemView * parent;
+@property (strong, nonatomic) CommentsView * parent;
 @property (strong, nonatomic) IBOutlet UIWebView *webViewReply;
 @property (retain, nonatomic) Comment * parentComment;
 - (IBAction)clickDidOnExit:(id)sender;

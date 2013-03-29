@@ -20,7 +20,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = self.tableSoftwares.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = self.tableSoftwares.backgroundColor = [ToolHelp getBackgroundColor];
     softwares = [[NSMutableArray alloc] initWithCapacity:20];
     
     [self reload];
@@ -38,7 +38,7 @@
             parameters:[NSDictionary dictionaryWithObjectsAndKeys:isSoftwareTagList ? [NSString stringWithFormat:@"%d",self.tag] : self.searchTag,@"searchTag",[NSString stringWithFormat:@"%d", softwares.count/20],@"pageIndex",@"20",@"pageSize", nil] success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 
                 NSString *response = operation.responseString;
-                [Tool getOSCNotice2:response];
+                [ToolHelp getOSCNotice2:response];
                 isLoading = NO;
                 @try {
                     TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
@@ -60,7 +60,7 @@
                     TBXMLElement *description = [TBXML childElementNamed:@"description" parentElement:first];
                     TBXMLElement *url = [TBXML childElementNamed:@"url" parentElement:first];
                     SoftwareUnit *s = [[SoftwareUnit alloc] initWithParameters:[TBXML textForElement:name] andDescription:[TBXML textForElement:description] andUrl:[TBXML textForElement:url]];
-                    if (![Tool isRepeatSoftware:softwares andSoftware:s]) {
+                    if (![ToolHelp isRepeatSoftware:softwares andSoftware:s]) {
                         [newResults addObject:s];
                     }
                     while (first) {
@@ -70,7 +70,7 @@
                             description = [TBXML childElementNamed:@"description" parentElement:first];
                             url = [TBXML childElementNamed:@"url" parentElement:first];
                             s = [[SoftwareUnit alloc] initWithParameters:[TBXML textForElement:name] andDescription:[TBXML textForElement:description] andUrl:[TBXML textForElement:url]];
-                            if (![Tool isRepeatSoftware:softwares andSoftware:s]) {
+                            if (![ToolHelp isRepeatSoftware:softwares andSoftware:s]) {
                                 [newResults addObject:s];
                             }
                         }
@@ -93,7 +93,7 @@
 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                 return ;
             }];
     isLoading = YES;
@@ -131,7 +131,7 @@
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -172,7 +172,7 @@
     {
         SoftwareUnit * s = [softwares objectAtIndex:row];
         if (s) {
-            [Tool analysis:s.url andNavController:self.navigationController];
+            [ToolHelp analysis:s.url andNavController:self.navigationController];
         }
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tool.h"
+#import "ToolHelp.h"
 #import "ProfileBase.h"
 #import "MessageView.h"
 #import "Config.h"

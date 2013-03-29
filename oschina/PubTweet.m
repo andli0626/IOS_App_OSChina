@@ -22,7 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [Tool roundTextView:txtContent];
+    [ToolHelp roundTextView:txtContent];
     lblHeadTip.font = [UIFont boldSystemFontOfSize:17.0];
     UIToolbar *customToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 146, 44.01)];
     NSMutableArray *rightBarButtonArray = [[NSMutableArray alloc] initWithCapacity:2];
@@ -34,7 +34,7 @@
     [customToolbar setItems:rightBarButtonArray animated:NO];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customToolbar];
     
-    self.view.backgroundColor = [Tool getBackgroundColor];
+    self.view.backgroundColor = [ToolHelp getBackgroundColor];
     
     if (self.atSomebody) {
         txtContent.text = self.atSomebody;
@@ -97,25 +97,25 @@
     
     NSString *tweet = self.txtContent.text;
     if ([tweet isEqualToString:@""]) {
-        [Tool ToastNotification:@"错误 动弹必须包含至少一个字符" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"错误 动弹必须包含至少一个字符" andView:self.view andLoading:NO andIsBottom:NO];
         return;
     }
     //如果没有图片
     if (self.img.image == nil) {
         
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
-        [Tool showHUD:@"正在发表" andView:self.view andHUD:hud];
+        [ToolHelp showHUD:@"正在发表" andView:self.view andHUD:hud];
         [[AFOSCClient sharedClient] postPath:api_tweet_pub parameters:[NSDictionary dictionaryWithObjectsAndKeys:
             [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
             tweet,@"msg",nil]
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          
                                          [hud hide:YES];
-                                         [Tool getOSCNotice2:operation.responseString];
+                                         [ToolHelp getOSCNotice2:operation.responseString];
                                          
-                                         ApiError * error = [Tool getApiError2:operation.responseString];
+                                         ApiError * error = [ToolHelp getApiError2:operation.responseString];
                                          if (error == nil) {
-                                             [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                                             [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                              return ;
                                          }
                                          switch (error.errorCode) {
@@ -133,13 +133,13 @@
                                              case -2:
                                              case -1:
                                              {
-                                                  [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                                                  [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@", error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                                              }
                                                  break;
                                          }
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          [hud hide:YES];
-                                         [Tool ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
+                                         [ToolHelp ToastNotification:@"网络连接故障" andView:self.view andLoading:NO andIsBottom:NO];
                                      }];
     }
     //如果有图片 则后台发送
@@ -197,8 +197,8 @@
     [self dismissModalViewControllerAnimated:YES];
     //添加到集合中
     UIImage * imgData = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.img.image = [Tool scale:imgData toSize:[Tool scaleSize:imgData.size]];
-    [Config Instance].tweetCachePic = [Tool scale:imgData toSize:[Tool scaleSize:imgData.size]];
+    self.img.image = [ToolHelp scale:imgData toSize:[ToolHelp scaleSize:imgData.size]];
+    [Config Instance].tweetCachePic = [ToolHelp scale:imgData toSize:[ToolHelp scaleSize:imgData.size]];
     [self clickBackground:nil];
 }
 //用户取消选择某张图片

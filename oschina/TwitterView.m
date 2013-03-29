@@ -33,7 +33,7 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     //设定背景颜色
-    self.tableTweets.backgroundColor = [Tool getBackgroundColor];
+    self.tableTweets.backgroundColor = [ToolHelp getBackgroundColor];
     
     //设定Tab双击刷新事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshed:) name:Notification_TabClick object:nil];
@@ -122,13 +122,13 @@
             [self clear];
         }
         
-        [Tool getOSCNotice2:operation.responseString];
+        [ToolHelp getOSCNotice2:operation.responseString];
         isLoading = NO;
         NSString *response = operation.responseString;
         @try {
             
             TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
-            int count = [Tool isListOver2:response];
+            int count = [ToolHelp isListOver2:response];
             allCount += count;
             if (count < 20) {
                 isLoadOver = YES;
@@ -164,8 +164,8 @@
             TBXMLElement *imgSmall = [TBXML childElementNamed:@"imgSmall" parentElement:first];
             TBXMLElement *imgBig = [TBXML childElementNamed:@"imgBig" parentElement:first];
             TBXMLElement *appClient = [TBXML childElementNamed:@"appclient" parentElement:first];
-            Tweet *t = [[Tweet alloc] initWidthParameters:[[TBXML textForElement:_id] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andTweet:[TBXML textForElement:words] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andCommentCount:[[TBXML textForElement:commentCount] intValue] andImgTweet:[TBXML textForElement:imgSmall] andImgBig:[TBXML textForElement:imgBig] andAppClient:[[TBXML textForElement:appClient] intValue]];
-            if (![Tool isRepeatTweet:tweets andTweet:t]) {
+            Tweet *t = [[Tweet alloc] initWidthParameters:[[TBXML textForElement:_id] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andTweet:[TBXML textForElement:words] andFromNowOn:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andCommentCount:[[TBXML textForElement:commentCount] intValue] andImgTweet:[TBXML textForElement:imgSmall] andImgBig:[TBXML textForElement:imgBig] andAppClient:[[TBXML textForElement:appClient] intValue]];
+            if (![ToolHelp isRepeatTweet:tweets andTweet:t]) {
                 [newTweets addObject:t];
             }
             
@@ -184,9 +184,9 @@
                     imgSmall = [TBXML childElementNamed:@"imgSmall" parentElement:first];
                     imgBig = [TBXML childElementNamed:@"imgBig" parentElement:first];
                     appClient = [TBXML childElementNamed:@"appclient" parentElement:first];
-                    t = [[Tweet alloc] initWidthParameters:[[TBXML textForElement:_id] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andTweet:[TBXML textForElement:words] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andCommentCount:[[TBXML textForElement:commentCount] intValue] andImgTweet:[TBXML textForElement:imgSmall] andImgBig:[TBXML textForElement:imgBig]
+                    t = [[Tweet alloc] initWidthParameters:[[TBXML textForElement:_id] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andTweet:[TBXML textForElement:words] andFromNowOn:[ToolHelp intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait] andCommentCount:[[TBXML textForElement:commentCount] intValue] andImgTweet:[TBXML textForElement:imgSmall] andImgBig:[TBXML textForElement:imgBig]
                                               andAppClient:[[TBXML textForElement:appClient] intValue]];
-                    if (![Tool isRepeatTweet:tweets andTweet:t]) {
+                    if (![ToolHelp isRepeatTweet:tweets andTweet:t]) {
                         [newTweets addObject:t];
                     }
                 }
@@ -215,7 +215,7 @@
             return;
         }
         if ([Config Instance].isNetworkRunning) {
-            [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+            [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
         }
     }];
     
@@ -256,7 +256,7 @@
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [Tool getCellBackgroundColor];
+    cell.backgroundColor = [ToolHelp getCellBackgroundColor];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -352,7 +352,7 @@
                 cell.lbl_Author.text = [NSString stringWithFormat:@"%@:", t.author];
                 cell.txt_Message.font = [UIFont boldSystemFontOfSize:14.0];
                 cell.txt_Message.text = t.tweet;
-                cell.lbl_Time.text = [NSString stringWithFormat:@"%@ %@", [Tool intervalSinceNow:t.fromNowOn], [Tool getAppClientString:t.appClient]];
+                cell.lbl_Time.text = [NSString stringWithFormat:@"%@ %@", [ToolHelp intervalSinceNow:t.fromNowOn], [ToolHelp getAppClientString:t.appClient]];
                 cell.lblCommentCount.text = [NSString stringWithFormat:@"%d", t.commentCount];
 
                 //添加长按删除功能 
@@ -388,7 +388,7 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        [Tool pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
+        [ToolHelp pushUserDetail:tap.tag andNavController:self.parentViewController.navigationController];
     }
 }
 //点击动弹图片事件
@@ -396,7 +396,7 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        [Tool pushTweetImgDetail:tap.tagString andParent:self];
+        [ToolHelp pushTweetImgDetail:tap.tagString andParent:self];
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -417,7 +417,7 @@
             self.parentViewController.title = [parent getSegmentTitle];
             self.parentViewController.tabBarItem.title = @"动弹";
             
-            [Tool pushTweetDetail:t andNavController:self.parentViewController.navigationController];
+            [ToolHelp pushTweetDetail:t andNavController:self.parentViewController.navigationController];
         }
     }
 }
@@ -446,7 +446,7 @@
     //是否为我发表的
     if (c.authorID != [Config Instance].getUID) 
     {
-        [Tool ToastNotification:@"错误 不能删除别人的动弹" andView:self.view andLoading:NO andIsBottom:NO];
+        [ToolHelp ToastNotification:@"错误 不能删除别人的动弹" andView:self.view andLoading:NO andIsBottom:NO];
         return;
     }
     
@@ -454,10 +454,10 @@
                                 
         success:^(AFHTTPRequestOperation *operation, id responseObject) 
         {
-            [Tool getOSCNotice2:operation.responseString];
-            ApiError *error = [Tool getApiError2:operation.responseString];
+            [ToolHelp getOSCNotice2:operation.responseString];
+            ApiError *error = [ToolHelp getApiError2:operation.responseString];
             if (error == nil) {
-                [Tool ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                 return;
             }
             switch (error.errorCode) 
@@ -471,7 +471,7 @@
                 case -2:
                 case -1:
                 {
-                    [Tool ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
+                    [ToolHelp ToastNotification:[NSString stringWithFormat:@"错误 %@",error.errorMessage] andView:self.view andLoading:NO andIsBottom:NO];
                 }
                     break;
             }
@@ -483,7 +483,7 @@
                 return;
             }
             if ([Config Instance].isNetworkRunning) {
-                [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                [ToolHelp ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
             }
         }];
 }
