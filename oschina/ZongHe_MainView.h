@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsView.h"
+#import "ZongHe_TableView.h"
 
-@interface ZongHeMainView : UIViewController
+@interface ZongHe_MainView : UIViewController
 
 @property (strong,nonatomic) UISegmentedControl * zongheSegment;
-@property (strong,nonatomic) NewsView * newsView;
+@property (strong,nonatomic) ZongHe_TableView * newsView;
 
 - (NSString *)getSegmentTitle;
 - (void)myInit;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewsCell.h"
+#import "ZongHeTableCell.h"
 
-@implementation NewsCell
+@implementation ZongHeTableCell
 @synthesize lblTitle;
 @synthesize lblAuthor;
 @synthesize delegate;

@@ -29,8 +29,8 @@
 		DA33B7CA15401926004D1434 /* active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA33B7C915401926004D1434 /* active@2x.png */; };
 		DA3D3D3C154A697500BB0777 /* tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3D3D3B154A697500BB0777 /* tweet@2x.png */; };
 		DA3D3D3E154A6D9400BB0777 /* portraitbody.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3D3D3D154A6D9400BB0777 /* portraitbody.png */; };
-		DA3FF885150F218C009A5C86 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF883150F218C009A5C86 /* NewsCell.m */; };
-		DA3FF886150F218C009A5C86 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3FF884150F218C009A5C86 /* NewsCell.xib */; };
+		DA3FF885150F218C009A5C86 /* ZongHeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF883150F218C009A5C86 /* ZongHeTableCell.m */; };
+		DA3FF886150F218C009A5C86 /* ZongHeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3FF884150F218C009A5C86 /* ZongHeTableCell.xib */; };
 		DA3FF88B150F3292009A5C86 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF889150F3292009A5C86 /* MessageCell.m */; };
 		DA3FF88C150F3292009A5C86 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3FF88A150F3292009A5C86 /* MessageCell.xib */; };
 		DA3FF890150F3320009A5C86 /* PubMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3FF88E150F3320009A5C86 /* PubMessage.m */; };
@@ -79,8 +79,8 @@
 		DA82063A150DA2E20065AB7E /* ProfileBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA820638150DA2E10065AB7E /* ProfileBase.xib */; };
 		DA820647150DBCA90065AB7E /* NewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = DA820645150DBCA90065AB7E /* NewsDetail.m */; };
 		DA820648150DBCA90065AB7E /* NewsDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA820646150DBCA90065AB7E /* NewsDetail.xib */; };
-		DA82064C150DBEC40065AB7E /* ZongHeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82064A150DBEC30065AB7E /* ZongHeMainView.m */; };
-		DA82064D150DBEC40065AB7E /* ZongHeMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA82064B150DBEC30065AB7E /* ZongHeMainView.xib */; };
+		DA82064C150DBEC40065AB7E /* ZongHe_MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */; };
+		DA82064D150DBEC40065AB7E /* ZongHe_MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */; };
 		DA820660150DDAE70065AB7E /* TweetBase2.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82065E150DDAE70065AB7E /* TweetBase2.m */; };
 		DA820661150DDAE70065AB7E /* TweetBase2.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA82065F150DDAE70065AB7E /* TweetBase2.xib */; };
 		DA82286B1526BD8B00B70D63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA82286A1526BD8B00B70D63 /* AVFoundation.framework */; };
@@ -167,8 +167,8 @@
 		DAC5D7BE1519D92A0041AE9A /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC5D7BD1519D92A0041AE9A /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAC672DE1537F8BA0002ADAD /* 640x3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC672DD1537F8BA0002ADAD /* 640x3.png */; };
 		DAC686501511E84700D922BC /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC6864F1511E84700D922BC /* Config.m */; };
-		DAC69C261505EE3F00C2FCEC /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC69C241505EE3F00C2FCEC /* NewsView.m */; };
-		DAC69C271505EE3F00C2FCEC /* NewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC69C251505EE3F00C2FCEC /* NewsView.xib */; };
+		DAC69C261505EE3F00C2FCEC /* ZongHe_TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC69C241505EE3F00C2FCEC /* ZongHe_TableView.m */; };
+		DAC69C271505EE3F00C2FCEC /* ZongHe_TableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC69C251505EE3F00C2FCEC /* ZongHe_TableView.xib */; };
 		DAC69C2B1505EFD100C2FCEC /* PostsView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC69C291505EFD100C2FCEC /* PostsView.m */; };
 		DAC69C2C1505EFD100C2FCEC /* PostsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC69C2A1505EFD100C2FCEC /* PostsView.xib */; };
 		DAC69C421506116700C2FCEC /* TwitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC69C401506116700C2FCEC /* TwitterView.m */; };
@@ -397,9 +397,9 @@
 		DA33B7C915401926004D1434 /* active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "active@2x.png"; sourceTree = "<group>"; };
 		DA3D3D3B154A697500BB0777 /* tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweet@2x.png"; sourceTree = "<group>"; };
 		DA3D3D3D154A6D9400BB0777 /* portraitbody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portraitbody.png; sourceTree = "<group>"; };
-		DA3FF882150F218C009A5C86 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
-		DA3FF883150F218C009A5C86 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
-		DA3FF884150F218C009A5C86 /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		DA3FF882150F218C009A5C86 /* ZongHeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHeTableCell.h; sourceTree = "<group>"; };
+		DA3FF883150F218C009A5C86 /* ZongHeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHeTableCell.m; sourceTree = "<group>"; };
+		DA3FF884150F218C009A5C86 /* ZongHeTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHeTableCell.xib; sourceTree = "<group>"; };
 		DA3FF888150F3292009A5C86 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		DA3FF889150F3292009A5C86 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		DA3FF88A150F3292009A5C86 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
@@ -466,9 +466,9 @@
 		DA820644150DBCA90065AB7E /* NewsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetail.h; sourceTree = "<group>"; };
 		DA820645150DBCA90065AB7E /* NewsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetail.m; sourceTree = "<group>"; };
 		DA820646150DBCA90065AB7E /* NewsDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetail.xib; sourceTree = "<group>"; };
-		DA820649150DBEC30065AB7E /* ZongHeMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHeMainView.h; sourceTree = "<group>"; };
-		DA82064A150DBEC30065AB7E /* ZongHeMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHeMainView.m; sourceTree = "<group>"; };
-		DA82064B150DBEC30065AB7E /* ZongHeMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHeMainView.xib; sourceTree = "<group>"; };
+		DA820649150DBEC30065AB7E /* ZongHe_MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHe_MainView.h; sourceTree = "<group>"; };
+		DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHe_MainView.m; sourceTree = "<group>"; };
+		DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHe_MainView.xib; sourceTree = "<group>"; };
 		DA82065D150DDAE70065AB7E /* TweetBase2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetBase2.h; sourceTree = "<group>"; };
 		DA82065E150DDAE70065AB7E /* TweetBase2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetBase2.m; sourceTree = "<group>"; };
 		DA82065F150DDAE70065AB7E /* TweetBase2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetBase2.xib; sourceTree = "<group>"; };
@@ -601,9 +601,9 @@
 		DAC672DD1537F8BA0002ADAD /* 640x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 640x3.png; sourceTree = "<group>"; };
 		DAC6864E1511E84700D922BC /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		DAC6864F1511E84700D922BC /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
-		DAC69C231505EE3F00C2FCEC /* NewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
-		DAC69C241505EE3F00C2FCEC /* NewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
-		DAC69C251505EE3F00C2FCEC /* NewsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsView.xib; sourceTree = "<group>"; };
+		DAC69C231505EE3F00C2FCEC /* ZongHe_TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZongHe_TableView.h; sourceTree = "<group>"; };
+		DAC69C241505EE3F00C2FCEC /* ZongHe_TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZongHe_TableView.m; sourceTree = "<group>"; };
+		DAC69C251505EE3F00C2FCEC /* ZongHe_TableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZongHe_TableView.xib; sourceTree = "<group>"; };
 		DAC69C281505EFD000C2FCEC /* PostsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsView.h; sourceTree = "<group>"; };
 		DAC69C291505EFD100C2FCEC /* PostsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsView.m; sourceTree = "<group>"; };
 		DAC69C2A1505EFD100C2FCEC /* PostsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsView.xib; sourceTree = "<group>"; };
@@ -1746,15 +1746,15 @@
 		F24122211705D0F30072E6F7 /* 1ZongHe */ = {
 			isa = PBXGroup;
 			children = (
-				DA820649150DBEC30065AB7E /* ZongHeMainView.h */,
-				DA82064A150DBEC30065AB7E /* ZongHeMainView.m */,
-				DA82064B150DBEC30065AB7E /* ZongHeMainView.xib */,
-				DAC69C231505EE3F00C2FCEC /* NewsView.h */,
-				DAC69C241505EE3F00C2FCEC /* NewsView.m */,
-				DAC69C251505EE3F00C2FCEC /* NewsView.xib */,
-				DA3FF882150F218C009A5C86 /* NewsCell.h */,
-				DA3FF883150F218C009A5C86 /* NewsCell.m */,
-				DA3FF884150F218C009A5C86 /* NewsCell.xib */,
+				DA820649150DBEC30065AB7E /* ZongHe_MainView.h */,
+				DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */,
+				DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */,
+				DAC69C231505EE3F00C2FCEC /* ZongHe_TableView.h */,
+				DAC69C241505EE3F00C2FCEC /* ZongHe_TableView.m */,
+				DAC69C251505EE3F00C2FCEC /* ZongHe_TableView.xib */,
+				DA3FF882150F218C009A5C86 /* ZongHeTableCell.h */,
+				DA3FF883150F218C009A5C86 /* ZongHeTableCell.m */,
+				DA3FF884150F218C009A5C86 /* ZongHeTableCell.xib */,
 			);
 			name = 1ZongHe;
 			sourceTree = "<group>";
@@ -1828,7 +1828,7 @@
 				DACC688514FF8049006F7B6A /* InfoPlist.strings in Resources */,
 				DABA75CB150469D100521596 /* SettingView.xib in Resources */,
 				DACA4EBA15049CA900EAC504 /* About.xib in Resources */,
-				DAC69C271505EE3F00C2FCEC /* NewsView.xib in Resources */,
+				DAC69C271505EE3F00C2FCEC /* ZongHe_TableView.xib in Resources */,
 				DAC69C2C1505EFD100C2FCEC /* PostsView.xib in Resources */,
 				DAC69C431506116700C2FCEC /* TwitterView.xib in Resources */,
 				DAC69C481506132600C2FCEC /* PubTweet.xib in Resources */,
@@ -1839,12 +1839,12 @@
 				DAB2C95C1508A16E00DA5B94 /* MessageView.xib in Resources */,
 				DA82063A150DA2E20065AB7E /* ProfileBase.xib in Resources */,
 				DA820648150DBCA90065AB7E /* NewsDetail.xib in Resources */,
-				DA82064D150DBEC40065AB7E /* ZongHeMainView.xib in Resources */,
+				DA82064D150DBEC40065AB7E /* ZongHe_MainView.xib in Resources */,
 				DA820661150DDAE70065AB7E /* TweetBase2.xib in Resources */,
 				DAD5C872150E01DC000C2DA4 /* ShareView.xib in Resources */,
 				DACEB0AA150EF1FD001D4A24 /* MessageSystemView.xib in Resources */,
 				DACEB0AF150EF2A5001D4A24 /* MessageSystemPub.xib in Resources */,
-				DA3FF886150F218C009A5C86 /* NewsCell.xib in Resources */,
+				DA3FF886150F218C009A5C86 /* ZongHeTableCell.xib in Resources */,
 				DA3FF88C150F3292009A5C86 /* MessageCell.xib in Resources */,
 				DA3FF891150F3320009A5C86 /* PubMessage.xib in Resources */,
 				DA3FF896150F3B98009A5C86 /* ReplyMsgView.xib in Resources */,
@@ -2066,7 +2066,7 @@
 				DABA75CF15046CB000521596 /* SettingModel.m in Sources */,
 				DACA4EB915049CA900EAC504 /* About.m in Sources */,
 				DACA4EC11504B09200EAC504 /* CheckNetwork.m in Sources */,
-				DAC69C261505EE3F00C2FCEC /* NewsView.m in Sources */,
+				DAC69C261505EE3F00C2FCEC /* ZongHe_TableView.m in Sources */,
 				DAC69C2B1505EFD100C2FCEC /* PostsView.m in Sources */,
 				DAC69C421506116700C2FCEC /* TwitterView.m in Sources */,
 				DAC69C471506132600C2FCEC /* PubTweet.m in Sources */,
@@ -2085,13 +2085,13 @@
 				DACC3B9E1509DD0B00E378D2 /* ProfileModel.m in Sources */,
 				DA820639150DA2E20065AB7E /* ProfileBase.m in Sources */,
 				DA820647150DBCA90065AB7E /* NewsDetail.m in Sources */,
-				DA82064C150DBEC40065AB7E /* ZongHeMainView.m in Sources */,
+				DA82064C150DBEC40065AB7E /* ZongHe_MainView.m in Sources */,
 				DA820660150DDAE70065AB7E /* TweetBase2.m in Sources */,
 				DAD5C871150E01DC000C2DA4 /* ShareView.m in Sources */,
 				DACEB0A4150EEB20001D4A24 /* Tool.m in Sources */,
 				DACEB0A9150EF1FD001D4A24 /* MessageSystemView.m in Sources */,
 				DACEB0AE150EF2A5001D4A24 /* MessageSystemPub.m in Sources */,
-				DA3FF885150F218C009A5C86 /* NewsCell.m in Sources */,
+				DA3FF885150F218C009A5C86 /* ZongHeTableCell.m in Sources */,
 				DA3FF88B150F3292009A5C86 /* MessageCell.m in Sources */,
 				DA3FF890150F3320009A5C86 /* PubMessage.m in Sources */,
 				DA3FF895150F3B98009A5C86 /* ReplyMsgView.m in Sources */,

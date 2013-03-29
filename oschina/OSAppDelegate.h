@@ -12,7 +12,7 @@
 #import "CheckNetwork.h"
 #import "PostBase.h"
 #import "ProfileBase.h"
-#import "ZongHeMainView.h"
+#import "ZongHe_MainView.h"
 #import "TweetBase2.h"
 #import "SettingView.h"
 #import "NdUncaughtExceptionHandler.h"
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
-@property (strong, nonatomic) ZongHeMainView * newsBase;
+@property (strong, nonatomic) ZongHe_MainView * newsBase;
 @property (strong, nonatomic) PostBase * postBase;
 @property (strong, nonatomic) TweetBase2 * tweetBase;
 @property (strong, nonatomic) ProfileBase * profileBase;

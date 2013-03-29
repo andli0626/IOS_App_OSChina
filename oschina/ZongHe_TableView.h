@@ -10,14 +10,14 @@
 #import "NewsDetail.h"
 #import "ShareView.h"
 #import "MessageSystemView.h"
-#import "NewsCell.h"
-#import "ZongHeMainView.h"
+#import "ZongHeTableCell.h"
+#import "ZongHe_MainView.h"
 #import "ASIProgressDelegate.h"
 #import "MBProgressHUD.h"
 #import "BlogUnit.h"
 
 //下拉刷新的委托
-@interface NewsView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITabBarControllerDelegate,UIAlertViewDelegate>
+@interface ZongHe_TableView : UIViewController<UITableViewDelegate,UITableViewDataSource,EGORefreshTableHeaderDelegate,MBProgressHUDDelegate, UITabBarControllerDelegate,UIAlertViewDelegate>
 {
     NSMutableArray * news;
     BOOL isLoading;

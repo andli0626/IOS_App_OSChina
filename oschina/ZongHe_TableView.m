@@ -6,13 +6,15 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewsView.h"
+#import "ZongHe_TableView.h"
 
-@implementation NewsView
+@implementation ZongHe_TableView
 @synthesize tableNews;
 @synthesize catalog;
 
-#pragma mark - View lifecycle
+//综合列表界面
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -190,12 +192,12 @@
     if ([news count] > 0) {
         if ([indexPath row] < [news count]) 
         {
-            NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
+            ZongHeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
             if (!cell) {
-                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NewsCell" owner:self options:nil];
+                NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ZongHeTableCell" owner:self options:nil];
                 for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[NewsCell class]]) {
-                        cell = (NewsCell *)o;
+                    if ([o isKindOfClass:[ZongHeTableCell class]]) {
+                        cell = (ZongHeTableCell *)o;
                         break;
                     }
                 }
@@ -235,7 +237,7 @@
         }
     }
     else {
-        ZongHeMainView *newsbaseView = (ZongHeMainView *)self.parentViewController;
+        ZongHe_MainView *newsbaseView = (ZongHe_MainView *)self.parentViewController;
         self.parentViewController.title = [newsbaseView getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {

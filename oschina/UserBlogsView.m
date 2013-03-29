@@ -144,12 +144,12 @@
     if (blogs.count > 0) {
         if (indexPath.row < blogs.count) 
         {
-            NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
+            ZongHeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:NewsCellIdentifier];
             if (!cell) {
                 NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"NewsCell" owner:self options:nil];
                 for (NSObject *o in objects) {
-                    if ([o isKindOfClass:[NewsCell class]]) {
-                        cell = (NewsCell *)o;
+                    if ([o isKindOfClass:[ZongHeTableCell class]]) {
+                        cell = (ZongHeTableCell *)o;
                         break;
                     }
                 }

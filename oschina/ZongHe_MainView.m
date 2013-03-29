@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "ZongHeMainView.h"
+#import "ZongHe_MainView.h"
 
-@implementation ZongHeMainView
+@implementation ZongHe_MainView
 @synthesize zongheSegment;
 @synthesize newsView;
 
@@ -66,7 +66,7 @@
     self.navigationItem.titleView = self.zongheSegment;
     
     //子页面初始化
-    self.newsView = [[NewsView alloc] init];
+    self.newsView = [[ZongHe_TableView alloc] init];
     self.newsView.catalog = 1;
     [self addChildViewController:self.newsView];
     [self.view addSubview:self.newsView.view];
