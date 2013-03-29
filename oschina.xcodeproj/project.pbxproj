@@ -284,7 +284,7 @@
 		DAC77E2215CFC94C00AC22FF /* 104@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC77DBB15CFC94C00AC22FF /* 104@2x.png */; };
 		DAC77E2315CFC94C00AC22FF /* 105@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC77DBC15CFC94C00AC22FF /* 105@2x.png */; };
 		DAC7A3511547B75900A77A7F /* Software.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7A3501547B75900A77A7F /* Software.m */; };
-		DAC7A3541547B9B900A77A7F /* BlogInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7A3531547B9B900A77A7F /* BlogInfoModel.m */; };
+		DAC7A3541547B9B900A77A7F /* Blog.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7A3531547B9B900A77A7F /* Blog.m */; };
 		DAC7AE98152004000017491E /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7AE7D152004000017491E /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAC7AE99152004000017491E /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7AE80152004000017491E /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAC7AE9A152004000017491E /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC7AE83152004000017491E /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -725,8 +725,8 @@
 		DAC77DBC15CFC94C00AC22FF /* 105@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "105@2x.png"; sourceTree = "<group>"; };
 		DAC7A34F1547B75900A77A7F /* Software.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Software.h; sourceTree = "<group>"; };
 		DAC7A3501547B75900A77A7F /* Software.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Software.m; sourceTree = "<group>"; };
-		DAC7A3521547B9B900A77A7F /* BlogInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogInfoModel.h; sourceTree = "<group>"; };
-		DAC7A3531547B9B900A77A7F /* BlogInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogInfoModel.m; sourceTree = "<group>"; };
+		DAC7A3521547B9B900A77A7F /* Blog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blog.h; sourceTree = "<group>"; };
+		DAC7A3531547B9B900A77A7F /* Blog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blog.m; sourceTree = "<group>"; };
 		DAC7AE7C152004000017491E /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		DAC7AE7D152004000017491E /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		DAC7AE7F152004000017491E /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -1618,8 +1618,8 @@
 				DAAFA49F15184F6F0019DE81 /* Comment.m */,
 				DAC7A34F1547B75900A77A7F /* Software.h */,
 				DAC7A3501547B75900A77A7F /* Software.m */,
-				DAC7A3521547B9B900A77A7F /* BlogInfoModel.h */,
-				DAC7A3531547B9B900A77A7F /* BlogInfoModel.m */,
+				DAC7A3521547B9B900A77A7F /* Blog.h */,
+				DAC7A3531547B9B900A77A7F /* Blog.m */,
 				DA7B75E315539BD800461B45 /* Favorite.h */,
 				DA7B75E415539BD800461B45 /* Favorite.m */,
 				DAE4A0F3155A0AC9006AB969 /* SearchResult.h */,
@@ -2106,7 +2106,7 @@
 				DA4146E61535A27B004314BC /* RelativeNews.m in Sources */,
 				DA7A86641545077900EDC685 /* ASIWebPageRequest.m in Sources */,
 				DAC7A3511547B75900A77A7F /* Software.m in Sources */,
-				DAC7A3541547B9B900A77A7F /* BlogInfoModel.m in Sources */,
+				DAC7A3541547B9B900A77A7F /* Blog.m in Sources */,
 				DAC0FB2D1549529500BD54CD /* ObjectReply.m in Sources */,
 				DAB37432154BCF7200CD3279 /* CommentRefer.m in Sources */,
 				DA7B75E515539BD800461B45 /* Favorite.m in Sources */,

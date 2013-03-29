@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BlogInfoModel : NSObject
+@interface Blog : NSObject
 
 @property int _id;
 @property (copy,nonatomic) NSString * title;
