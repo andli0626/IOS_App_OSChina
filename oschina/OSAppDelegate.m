@@ -49,7 +49,7 @@
     settingNav.navigationBarHidden = NO;
     
     //新闻页
-    self.newsBase = [[ZongHe_MainView alloc] initWithNibName:@"NewsBase" bundle:nil];
+    self.newsBase = [[ZongHe_MainView alloc] initWithNibName:@"ZongHe_MainView" bundle:nil];
     UINavigationController *newsNav = [[UINavigationController alloc] initWithRootViewController:self.newsBase];
     
     self.tabBarController = [[UITabBarController alloc] init];

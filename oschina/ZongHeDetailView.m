@@ -33,10 +33,10 @@
 {
     UIBarButtonItem * btn = (UIBarButtonItem *)sender;
     BOOL isFav = [btn.title isEqualToString:@"收藏此文"];
-
+    
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
     [ToolHelp showHUD:isFav ? @"正在添加收藏":@"正在删除收藏" andView:self.view andHUD:hud];
-    [[AFOSCClient sharedClient]getPath:isFav ? api_favorite_add : api_favorite_delete 
+    [[AFOSCClient sharedClient]getPath:isFav ? api_favorite_add : api_favorite_delete
                             parameters:[NSDictionary dictionaryWithObjectsAndKeys:
                                         [NSString stringWithFormat:@"%d", [Config Instance].getUID],@"uid",
                                         [NSString stringWithFormat:@"%d", newsID],@"objid",
@@ -44,13 +44,13 @@
                                 
                                 [hud hide:YES];
                                 [ToolHelp getOSCNotice2:operation.responseString];
-                          
+                                
                                 ApiError *error = [ToolHelp getApiError2:operation.responseString];
                                 if (error == nil) {
                                     [ToolHelp ToastNotification:operation.responseString andView:self.view andLoading:NO andIsBottom:NO];
                                     return ;
                                 }
-                                switch (error.errorCode) 
+                                switch (error.errorCode)
                                 {
                                     case 1:
                                     {
@@ -66,12 +66,12 @@
                                     }
                                         break;
                                 }
-
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [hud hide:YES];
-        [ToolHelp ToastNotification:@"添加收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
-    }];
+                                
+                                
+                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                [hud hide:YES];
+                                [ToolHelp ToastNotification:@"添加收藏失败" andView:self.view andLoading:NO andIsBottom:NO];
+                            }];
 }
 - (void)clickToHome:(id)sender
 {
@@ -90,7 +90,7 @@
     self.webView.delegate = self;
     [self.webView loadHTMLString:@"" baseURL:nil];
     
-    if ([Config Instance].isNetworkRunning) 
+    if ([Config Instance].isNetworkRunning)
     {
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
         [ToolHelp showHUD:@"正在加载" andView:self.view andHUD:hud];
@@ -109,7 +109,7 @@
             [self loadData:self.singleNews];
             
             //如果有网络 则缓存它
-            if ([Config Instance].isNetworkRunning) 
+            if ([Config Instance].isNetworkRunning)
             {
                 [ToolHelp saveCache:1 andID:self.singleNews._id andString:operation.responseString];
             }
@@ -165,7 +165,7 @@
 }
 - (void)refreshFavorite:(SingleNews *)n
 {
-    if (self.isNextPage) 
+    if (self.isNextPage)
     {
         UIToolbar * toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 128, 44.01)];
         NSMutableArray *right = [[NSMutableArray alloc] initWithCapacity:2];

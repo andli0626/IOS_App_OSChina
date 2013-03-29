@@ -1418,12 +1418,6 @@
 		DACC3BAC1509F21900E378D2 /* tab */ = {
 			isa = PBXGroup;
 			children = (
-				DA820644150DBCA90065AB7E /* ZongHeDetailView.h */,
-				DA820645150DBCA90065AB7E /* ZongHeDetailView.m */,
-				DA820646150DBCA90065AB7E /* ZongHeDetailView.xib */,
-				DAD5C86E150E01DC000C2DA4 /* ShareView.h */,
-				DAD5C86F150E01DC000C2DA4 /* ShareView.m */,
-				DAD5C870150E01DC000C2DA4 /* ShareView.xib */,
 				DAAF3218151057ED00B08728 /* SinglePost.h */,
 				DAAF3219151057ED00B08728 /* SinglePost.m */,
 				DAAF321A151057ED00B08728 /* SinglePost.xib */,
@@ -1703,9 +1697,6 @@
 		DACEB0B0150EF4BC001D4A24 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				DACEB0A6150EF1FD001D4A24 /* CommentsView.h */,
-				DACEB0A7150EF1FD001D4A24 /* CommentsView.m */,
-				DACEB0A8150EF1FD001D4A24 /* CommentsView.xib */,
 				DACEB0AB150EF2A5001D4A24 /* MessageSystemPub.h */,
 				DACEB0AC150EF2A5001D4A24 /* MessageSystemPub.m */,
 				DACEB0AD150EF2A5001D4A24 /* MessageSystemPub.xib */,
@@ -1746,6 +1737,9 @@
 		F24122211705D0F30072E6F7 /* 1ZongHe */ = {
 			isa = PBXGroup;
 			children = (
+				F24122251705F1270072E6F7 /* detail_tab3 */,
+				F24122241705F11E0072E6F7 /* detail_tab2 */,
+				F24122231705F0C70072E6F7 /* detail_tab1 */,
 				DA820649150DBEC30065AB7E /* ZongHe_MainView.h */,
 				DA82064A150DBEC30065AB7E /* ZongHe_MainView.m */,
 				DA82064B150DBEC30065AB7E /* ZongHe_MainView.xib */,
@@ -1773,6 +1767,36 @@
 				DAB2C913150858AD00DA5B94 /* PostCell.xib */,
 			);
 			name = 2Answer;
+			sourceTree = "<group>";
+		};
+		F24122231705F0C70072E6F7 /* detail_tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				DA820644150DBCA90065AB7E /* ZongHeDetailView.h */,
+				DA820645150DBCA90065AB7E /* ZongHeDetailView.m */,
+				DA820646150DBCA90065AB7E /* ZongHeDetailView.xib */,
+			);
+			name = detail_tab1;
+			sourceTree = "<group>";
+		};
+		F24122241705F11E0072E6F7 /* detail_tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				DACEB0A6150EF1FD001D4A24 /* CommentsView.h */,
+				DACEB0A7150EF1FD001D4A24 /* CommentsView.m */,
+				DACEB0A8150EF1FD001D4A24 /* CommentsView.xib */,
+			);
+			name = detail_tab2;
+			sourceTree = "<group>";
+		};
+		F24122251705F1270072E6F7 /* detail_tab3 */ = {
+			isa = PBXGroup;
+			children = (
+				DAD5C86E150E01DC000C2DA4 /* ShareView.h */,
+				DAD5C86F150E01DC000C2DA4 /* ShareView.m */,
+				DAD5C870150E01DC000C2DA4 /* ShareView.xib */,
+			);
+			name = detail_tab3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
