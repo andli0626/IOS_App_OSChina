@@ -202,7 +202,7 @@
             }
             cell.lblTitle.font = [UIFont boldSystemFontOfSize:15.0];
             if (self.catalog <= 1) {
-                NewsInfoModel *n = [news objectAtIndex:[indexPath row]];
+                News *n = [news objectAtIndex:[indexPath row]];
                 cell.lblTitle.text = n.title;
                 cell.lblAuthor.text = [NSString stringWithFormat:@"%@ 发布于 %@ (%d评)", n.author, n.pubDate, n.commentCount];
             }
@@ -239,7 +239,7 @@
         self.parentViewController.title = [parent getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {
-            NewsInfoModel *n = [news objectAtIndex:row];
+            News *n = [news objectAtIndex:row];
             if (n) 
             {
                 

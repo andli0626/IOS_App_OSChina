@@ -25,7 +25,7 @@
 		DA3358791507417400F6671E /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3358771507417300F6671E /* TweetCell.m */; };
 		DA33587A1507417400F6671E /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3358781507417400F6671E /* TweetCell.xib */; };
 		DA33587D150745B800F6671E /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA33587C150745B800F6671E /* Tweet.m */; };
-		DA335880150765C600F6671E /* NewsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA33587F150765C600F6671E /* NewsInfoModel.m */; };
+		DA335880150765C600F6671E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = DA33587F150765C600F6671E /* News.m */; };
 		DA33B7CA15401926004D1434 /* active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA33B7C915401926004D1434 /* active@2x.png */; };
 		DA3D3D3C154A697500BB0777 /* tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3D3D3B154A697500BB0777 /* tweet@2x.png */; };
 		DA3D3D3E154A6D9400BB0777 /* portraitbody.png in Resources */ = {isa = PBXBuildFile; fileRef = DA3D3D3D154A6D9400BB0777 /* portraitbody.png */; };
@@ -392,8 +392,8 @@
 		DA3358781507417400F6671E /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
 		DA33587B150745B800F6671E /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		DA33587C150745B800F6671E /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
-		DA33587E150765C600F6671E /* NewsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsInfoModel.h; sourceTree = "<group>"; };
-		DA33587F150765C600F6671E /* NewsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsInfoModel.m; sourceTree = "<group>"; };
+		DA33587E150765C600F6671E /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		DA33587F150765C600F6671E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		DA33B7C915401926004D1434 /* active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "active@2x.png"; sourceTree = "<group>"; };
 		DA3D3D3B154A697500BB0777 /* tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweet@2x.png"; sourceTree = "<group>"; };
 		DA3D3D3D154A6D9400BB0777 /* portraitbody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portraitbody.png; sourceTree = "<group>"; };
@@ -1133,25 +1133,9 @@
 		DAC69BCC1505B95700C2FCEC /* News */ = {
 			isa = PBXGroup;
 			children = (
+				F24122221705D10D0072E6F7 /* 2Answer */,
+				F24122211705D0F30072E6F7 /* 1ZongHe */,
 				DACC3BAC1509F21900E378D2 /* tab */,
-				DAC69C231505EE3F00C2FCEC /* NewsView.h */,
-				DAC69C241505EE3F00C2FCEC /* NewsView.m */,
-				DAC69C251505EE3F00C2FCEC /* NewsView.xib */,
-				DAC69C281505EFD000C2FCEC /* PostsView.h */,
-				DAC69C291505EFD100C2FCEC /* PostsView.m */,
-				DAC69C2A1505EFD100C2FCEC /* PostsView.xib */,
-				DAB2C911150858AD00DA5B94 /* PostCell.h */,
-				DAB2C912150858AD00DA5B94 /* PostCell.m */,
-				DAB2C913150858AD00DA5B94 /* PostCell.xib */,
-				DA820649150DBEC30065AB7E /* NewsBase.h */,
-				DA82064A150DBEC30065AB7E /* NewsBase.m */,
-				DA82064B150DBEC30065AB7E /* NewsBase.xib */,
-				DA3FF882150F218C009A5C86 /* NewsCell.h */,
-				DA3FF883150F218C009A5C86 /* NewsCell.m */,
-				DA3FF884150F218C009A5C86 /* NewsCell.xib */,
-				DAAF323415107C5000B08728 /* PostBase.h */,
-				DAAF323515107C5100B08728 /* PostBase.m */,
-				DAAF323615107C5100B08728 /* PostBase.xib */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1600,8 +1584,8 @@
 				DABA75CC15046C8A00521596 /* AppModel */,
 				DA33587B150745B800F6671E /* Tweet.h */,
 				DA33587C150745B800F6671E /* Tweet.m */,
-				DA33587E150765C600F6671E /* NewsInfoModel.h */,
-				DA33587F150765C600F6671E /* NewsInfoModel.m */,
+				DA33587E150765C600F6671E /* News.h */,
+				DA33587F150765C600F6671E /* News.m */,
 				DAB2C90515084C1800DA5B94 /* Post.h */,
 				DAB2C90615084C1800DA5B94 /* Post.m */,
 				DAB2C95D1508AD3600DA5B94 /* Message.h */,
@@ -1757,6 +1741,38 @@
 				DAF7AB2E1614183D005D464C /* NSString+Base64.m */,
 			);
 			name = AES;
+			sourceTree = "<group>";
+		};
+		F24122211705D0F30072E6F7 /* 1ZongHe */ = {
+			isa = PBXGroup;
+			children = (
+				DA3FF882150F218C009A5C86 /* NewsCell.h */,
+				DA3FF883150F218C009A5C86 /* NewsCell.m */,
+				DA3FF884150F218C009A5C86 /* NewsCell.xib */,
+				DAC69C231505EE3F00C2FCEC /* NewsView.h */,
+				DAC69C241505EE3F00C2FCEC /* NewsView.m */,
+				DAC69C251505EE3F00C2FCEC /* NewsView.xib */,
+				DA820649150DBEC30065AB7E /* NewsBase.h */,
+				DA82064A150DBEC30065AB7E /* NewsBase.m */,
+				DA82064B150DBEC30065AB7E /* NewsBase.xib */,
+			);
+			name = 1ZongHe;
+			sourceTree = "<group>";
+		};
+		F24122221705D10D0072E6F7 /* 2Answer */ = {
+			isa = PBXGroup;
+			children = (
+				DAAF323415107C5000B08728 /* PostBase.h */,
+				DAAF323515107C5100B08728 /* PostBase.m */,
+				DAAF323615107C5100B08728 /* PostBase.xib */,
+				DAC69C281505EFD000C2FCEC /* PostsView.h */,
+				DAC69C291505EFD100C2FCEC /* PostsView.m */,
+				DAC69C2A1505EFD100C2FCEC /* PostsView.xib */,
+				DAB2C911150858AD00DA5B94 /* PostCell.h */,
+				DAB2C912150858AD00DA5B94 /* PostCell.m */,
+				DAB2C913150858AD00DA5B94 /* PostCell.xib */,
+			);
+			name = 2Answer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2056,7 +2072,7 @@
 				DAC69C471506132600C2FCEC /* PubTweet.m in Sources */,
 				DA3358791507417400F6671E /* TweetCell.m in Sources */,
 				DA33587D150745B800F6671E /* Tweet.m in Sources */,
-				DA335880150765C600F6671E /* NewsInfoModel.m in Sources */,
+				DA335880150765C600F6671E /* News.m in Sources */,
 				DAB2C90715084C1800DA5B94 /* Post.m in Sources */,
 				DAB2C914150858AD00DA5B94 /* PostCell.m in Sources */,
 				DAB2C919150868C300DA5B94 /* ImgRecord.m in Sources */,
