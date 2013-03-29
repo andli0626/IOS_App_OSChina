@@ -188,7 +188,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
         [nav pushViewController:loginView animated:YES];
     }
 }
-+ (void)pushNewsDetail:(News *)news andNavController:(UINavigationController *)navController andIsNextPage:(BOOL)isNextPage
++ (void)pushNewsDetail:(NewsInfoModel *)news andNavController:(UINavigationController *)navController andIsNextPage:(BOOL)isNextPage
 {
     switch (news.newsType) {
             //标准新闻
@@ -229,7 +229,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             //问答
         case 2:
         {
-            Post *p = [[Post alloc] init];
+            PostInfoModel *p = [[PostInfoModel alloc] init];
             p._id = news.attachment.intValue;
             [Tool pushPostDetail:p andNavController:navController];
         }
@@ -263,7 +263,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             break;
     }
 }
-+ (void)pushPostDetail:(Post *)post andNavController:(UINavigationController *)navController
++ (void)pushPostDetail:(PostInfoModel *)post andNavController:(UINavigationController *)navController
 {
     UITabBarController *postTab = [[UITabBarController alloc] init];
     postTab.title = @"问答详情";
@@ -396,7 +396,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             {
                 NSString *type = [array objectAtIndex:2];
                 if ([type isEqualToString:@"blog"]) {
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 3;
                     n.attachment = [array objectAtIndex:3];
                     [Tool pushNewsDetail:n andNavController:navController andIsNextPage:NO];
@@ -413,7 +413,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             {
                 NSString *type = [array objectAtIndex:3];
                 if ([type isEqualToString:@"blog"]) {
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 3;
                     n.attachment = [array objectAtIndex:4];
                     [Tool pushNewsDetail:n andNavController:navController andIsNextPage:NO];
@@ -431,14 +431,14 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
                 if ([type isEqualToString:@"news"]) {
 
                     int newsid = [[array objectAtIndex:2] intValue];
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 0;
                     n._id = newsid;
                     [Tool pushNewsDetail:n andNavController:navController andIsNextPage:YES];
                     return YES;
                 }
                 else if([type isEqualToString:@"p"]){
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 1;
                     n.attachment = [array objectAtIndex:2];
                     [Tool pushNewsDetail:n andNavController:navController andIsNextPage:NO];
@@ -449,7 +449,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
                         NSArray *array2 = [[array objectAtIndex:2] componentsSeparatedByString:@"_"];
                         if ([array2 count] >= 2) {
                             int _id = [[array2 objectAtIndex:1] intValue];
-                            Post *p = [[Post alloc] init];
+                            PostInfoModel *p = [[PostInfoModel alloc] init];
                             p._id = _id;
                             [Tool pushPostDetail:p andNavController:navController];
                             return YES;
@@ -876,24 +876,24 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
 {
     return year*365 + month * 31 + day;
 }
-+ (BOOL)isRepeatNews:(NSMutableArray *)all andNews:(News *)n
++ (BOOL)isRepeatNews:(NSMutableArray *)all andNews:(NewsInfoModel *)n
 {
     if (all == nil) {
         return NO;
     }
-    for (News * _n in all) {
+    for (NewsInfoModel * _n in all) {
         if (_n._id == n._id) {
             return YES;
         }
     }
     return NO;
 }
-+ (BOOL)isRepeatPost:(NSMutableArray *)all andPost:(Post *)p
++ (BOOL)isRepeatPost:(NSMutableArray *)all andPost:(PostInfoModel *)p
 {
     if (all == nil) {
         return NO;
     }
-    for (Post *_p in all) {
+    for (PostInfoModel *_p in all) {
         if (p._id == _p._id) {
             return YES;
         }
@@ -1179,7 +1179,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
     TBXMLElement *attachment = [TBXML childElementNamed:@"attachment" parentElement:newsType];
     TBXMLElement *authoruid2 = [TBXML childElementNamed:@"authoruid2" parentElement:newsType];
     
-    News *n = [[News alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue]];
+    NewsInfoModel *n = [[NewsInfoModel alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue]];
     n.newsType = [[TBXML textForElement:type] intValue];
     if (attachment) {
         n.attachment = [TBXML textForElement:attachment];
@@ -1205,7 +1205,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             attachment = [TBXML childElementNamed:@"attachment" parentElement:newsType];
             authoruid2 = [TBXML childElementNamed:@"authoruid2" parentElement:newsType];
             
-            n = [[News alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue]];
+            n = [[NewsInfoModel alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andPubDate:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andCommentCount:[[TBXML textForElement:commentCount] intValue]];
             n.newsType = [[TBXML textForElement:type] intValue];
             if (attachment) {
                 n.attachment = [TBXML textForElement:attachment];
@@ -1299,7 +1299,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
     TBXMLElement *answerCount = [TBXML childElementNamed:@"answerCount" parentElement:first];
     TBXMLElement *viewCount = [TBXML childElementNamed:@"viewCount" parentElement:first];
     TBXMLElement *pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
-    Post *p = [[Post alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andAnswer:[[TBXML textForElement:answerCount] intValue] andView:[[TBXML textForElement:viewCount] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait]];
+    PostInfoModel *p = [[PostInfoModel alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andAnswer:[[TBXML textForElement:answerCount] intValue] andView:[[TBXML textForElement:viewCount] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait]];
     if (![Tool isRepeatPost:olds andPost:p]) {
         [newPosts addObject:p];
     }
@@ -1315,7 +1315,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
             answerCount = [TBXML childElementNamed:@"answerCount" parentElement:first];
             viewCount = [TBXML childElementNamed:@"viewCount" parentElement:first];
             pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
-            p = [[Post alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andAnswer:[[TBXML textForElement:answerCount] intValue] andView:[[TBXML textForElement:viewCount] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait]];
+            p = [[PostInfoModel alloc] initWithParameters:[[TBXML textForElement:_id] intValue] andTitle:[TBXML textForElement:title] andAnswer:[[TBXML textForElement:answerCount] intValue] andView:[[TBXML textForElement:viewCount] intValue] andAuthor:[TBXML textForElement:author] andAuthorID:[[TBXML textForElement:authorID] intValue] andFromNowOn:[Tool intervalSinceNow:[TBXML textForElement:pubDate]] andImg:[TBXML textForElement:portrait]];
             if (![Tool isRepeatPost:olds andPost:p]) {
                 [newPosts addObject:p];
             }

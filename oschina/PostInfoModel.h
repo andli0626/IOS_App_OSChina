@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Post : NSObject
+@interface PostInfoModel : NSObject
 
 @property int _id;
 @property int answerCount;

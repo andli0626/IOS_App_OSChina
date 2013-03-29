@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "Tool.h"
 #import "ApiError.h"
-#import "News.h"
-#import "Post.h"
+#import "NewsInfoModel.h"
+#import "PostInfoModel.h"
 #import "Activity.h"
 #import "ActivesView.h"
 #import "SinglePost.h"
@@ -58,8 +58,8 @@
 + (Comment *)getMyLatestComment:(ASIHTTPRequest *)request;
 + (Comment *)getMyLatestComment2:(NSString *)response;
 
-+ (void)pushNewsDetail:(News *)news andNavController:(UINavigationController *)navController andIsNextPage:(BOOL)isNextPage;
-+ (void)pushPostDetail:(Post *)post andNavController:(UINavigationController *)navController;
++ (void)pushNewsDetail:(NewsInfoModel *)news andNavController:(UINavigationController *)navController andIsNextPage:(BOOL)isNextPage;
++ (void)pushPostDetail:(PostInfoModel *)post andNavController:(UINavigationController *)navController;
 + (void)pushTweetDetail:(Tweet *)tweet andNavController:(UINavigationController *)navController;
 + (void)pushUserDetail:(int)uid andNavController:(UINavigationController *)navController;
 + (void)pushUserDetailWithName:(NSString *)name andNavController:(UINavigationController *)navController;
@@ -114,8 +114,8 @@
 
 
 //重复性判断
-+ (BOOL)isRepeatNews:(NSMutableArray *)all andNews:(News *)n;
-+ (BOOL)isRepeatPost:(NSMutableArray *)all andPost:(Post *)p;
++ (BOOL)isRepeatNews:(NSMutableArray *)all andNews:(NewsInfoModel *)n;
++ (BOOL)isRepeatPost:(NSMutableArray *)all andPost:(PostInfoModel *)p;
 + (BOOL)isRepeatTweet:(NSMutableArray *)all andTweet:(Tweet *)t;
 + (BOOL)isRepeatMessage:(NSMutableArray *)all andMessage:(Message *)m;
 + (BOOL)isRepeatComment:(NSMutableArray *)all andComment:(Comment *)c;

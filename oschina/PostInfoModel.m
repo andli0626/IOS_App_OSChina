@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "Post.h"
+#import "PostInfoModel.h"
 
-@implementation Post
+@implementation PostInfoModel
 
 @synthesize _id;
 @synthesize answerCount;
@@ -30,7 +30,7 @@
                 andFromNowOn:(NSString *)nfromNowOn 
                 andImg:(NSString *)nimg
 {
-    Post *p = [[Post alloc] init];
+    PostInfoModel *p = [[PostInfoModel alloc] init];
     p._id = newID;
     p.title = nTitle;
     p.answerCount = newAnswerCount;

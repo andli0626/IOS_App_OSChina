@@ -96,7 +96,7 @@
     NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
     [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
     //清空 
-    for (Post *p in posts) {
+    for (PostInfoModel *p in posts) {
         p.imgData = nil;
     }
 }
@@ -250,7 +250,7 @@
                 [cell.img addGestureRecognizer:singleTap];
             }
             cell.img.image = [UIImage imageNamed:@"avatar_loading.jpg"];
-            Post *p = [posts objectAtIndex:indexPath.row];
+            PostInfoModel *p = [posts objectAtIndex:indexPath.row];
             if ([cell.img.gestureRecognizers count] > 0) {
                 UITap *tap = (UITap *)[cell.img.gestureRecognizers objectAtIndex:0];
                 if (tap) {
@@ -319,7 +319,7 @@
     }
     else 
     {
-        Post *p = [posts objectAtIndex:row];
+        PostInfoModel *p = [posts objectAtIndex:row];
         if (p) 
         {
             PostBase * parent = (PostBase *)self.parentViewController;     
@@ -416,7 +416,7 @@
         if (_index >= [posts count]) {
             return;
         }
-        Post *p = [posts objectAtIndex:[index intValue]];
+        PostInfoModel *p = [posts objectAtIndex:[index intValue]];
         if (p) {
             p.imgData = iconDownloader.imgRecord.img;
             // cache it

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "News.h"
+#import "NewsInfoModel.h"
 
-@implementation News
+@implementation NewsInfoModel
 
 @synthesize _id;
 @synthesize title;
@@ -29,7 +29,7 @@
                 andPubDate:(NSString *)nPubDate 
                 andCommentCount:(int)nCommentCount
 {
-    News *n = [[News alloc] init];
+    NewsInfoModel *n = [[NewsInfoModel alloc] init];
     n._id = newID;
     n.title = newTitle;
     n.url = newUrl;

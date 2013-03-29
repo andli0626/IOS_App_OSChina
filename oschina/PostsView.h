@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
+#import "PostInfoModel.h"
 #import "PostCell.h"
 #import "PostBase.h"
 #import "SinglePost.h"

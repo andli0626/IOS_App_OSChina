@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "News.h"
+#import "NewsInfoModel.h"
 #import "NewsDetail.h"
 #import "ShareView.h"
 #import "MessageSystemView.h"

@@ -367,14 +367,14 @@
             switch (a.catalog) {
                 case 1:
                 {
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n._id = a.objectid;
                     [Tool pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
                 }
                     break;
                 case 2:
                 {
-                    Post *p = [[Post alloc] init];
+                    PostInfoModel *p = [[PostInfoModel alloc] init];
                     p._id = a.objectid;
                     [Tool pushPostDetail:p andNavController:self.navigationController]; 
                 }
@@ -389,7 +389,7 @@
                 case 4:
                 {
                     //这是博客分类
-                    News *n = [[News alloc] init];
+                    NewsInfoModel *n = [[NewsInfoModel alloc] init];
                     n.newsType = 3;
                     n.attachment = [NSString stringWithFormat:@"%d", a.objectid];
                     [Tool pushNewsDetail:n andNavController:self.navigationController andIsNextPage:NO];
