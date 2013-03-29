@@ -11,7 +11,7 @@
 #import "ShareView.h"
 #import "MessageSystemView.h"
 #import "NewsCell.h"
-#import "NewsBase.h"
+#import "ZongHeMainView.h"
 #import "ASIProgressDelegate.h"
 #import "MBProgressHUD.h"
 #import "BlogUnit.h"

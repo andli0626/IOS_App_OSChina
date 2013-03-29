@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NewsView.h"
 
-@interface NewsBase : UIViewController
+@interface ZongHeMainView : UIViewController
 
 @property (strong,nonatomic) UISegmentedControl * zongheSegment;
 @property (strong,nonatomic) NewsView * newsView;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewsBase.h"
+#import "ZongHeMainView.h"
 
-@implementation NewsBase
+@implementation ZongHeMainView
 @synthesize zongheSegment;
 @synthesize newsView;
 

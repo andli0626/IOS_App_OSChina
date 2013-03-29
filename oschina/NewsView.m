@@ -235,7 +235,7 @@
         }
     }
     else {
-        NewsBase *newsbaseView = (NewsBase *)self.parentViewController;
+        ZongHeMainView *newsbaseView = (ZongHeMainView *)self.parentViewController;
         self.parentViewController.title = [newsbaseView getSegmentTitle];
         self.parentViewController.tabBarItem.title = @"综合";
         if (self.catalog == 1) {
