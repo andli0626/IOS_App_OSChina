@@ -13,7 +13,7 @@
 //#import "ColorActiveCell.h"
 #import "FTCoreTextView.h"
 #import "ShareView.h"
-#import "News.h"
+#import "NewsInfoModel.h"
 #import "Post.h"
 #import "Tweet.h"
 #import "EGORefreshTableHeaderView.h"

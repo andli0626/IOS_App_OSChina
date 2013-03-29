@@ -479,7 +479,7 @@
             switch (a.catalog) {
                     case 1:
                     {
-                       News *n = [[News alloc] init];
+                       NewsInfoModel *n = [[NewsInfoModel alloc] init];
                       n._id = a.objectid;
                        [Tool pushNewsDetail:n andNavController:self.parentViewController.navigationController andIsNextPage:NO];
                    }
@@ -501,7 +501,7 @@
                  case 4:
                  {
                       //这是博客分类
-                      News *n = [[News alloc] init];
+                      NewsInfoModel *n = [[NewsInfoModel alloc] init];
                        n.newsType = 3;
                        n.attachment = [NSString stringWithFormat:@"%d", a.objectid];
                    [Tool pushNewsDetail:n andNavController:self.parentViewController.navigationController andIsNextPage:NO];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface News : NSObject
+@interface NewsInfoModel : NSObject
 
 @property int _id;
 @property (nonatomic,copy) NSString * title;
