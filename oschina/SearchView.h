@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchResult.h"
 #import "MBProgressHUD.h"
+#import "ToolHelp.h"
 
 @interface SearchView : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 {
