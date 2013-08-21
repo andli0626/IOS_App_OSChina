@@ -247,9 +247,14 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+     NSLog(@"[indexPath row]=%i",[indexPath row]);
+    NSLog(@"[tweets count]=%i",[tweets count]);
+    
     if ([indexPath row] < [tweets count]) {
         Tweet *t = [tweets objectAtIndex:[indexPath row]];
+        NSLog(@"t.height=%i",t.height);
         return [t.imgTweet isEqualToString:@""] ? t.height + 36 : t.height + 124;
+        
     }
     else
         return 62;
